@@ -1,36 +1,25 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Time Elapsed</th>
             <th>Voltage</th>
             <th>Value</th>
             <th>Average</th>
-            <th>Day Min</th>
-            <th>Day Max</th>
             <th>STATUS</th>
-            <th class="">Action</th>
+            <th>Date</th>
+            <th>Time</th>
         </tr>
     </thead>
     <tbody>
-        <tr class="cp" *ngFor="let alarm of alarmModel">
-            <td>{{alarm.TimeElapsed}}</td>
+        <tr  *ngFor="let alarm of alarmModel">
             <td>{{alarm.Voltage}}</td>
             <td>{{alarm.Value}}</td>
             <td> {{alarm.AVG}}˚C</td>
-            <td>{{alarm.MIN}}˚C</td>
-            <td>{{alarm.MAX}}˚C</td>
             <td>
                 <span
                     [class]="alarm.SensorStatusName === sensorStatusEnum.critical? 'btn-critical-grid' : alarm.SensorStatusName === sensorStatusEnum.warning? 'btn-warning-grid' : 'btn-inprogress-grid'">{{alarm.SensorStatusName}}</span>
             </td>
-            <td class="gridActionBtn">
-                <div class="btn-group">
-                    <span class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
-                        <img src="assets/images/icon-dots.png">
-                    </span>
-
-                </div>
-            </td>
+            <td>{{sharedService.getCustomDateTime(alarm.DateTime)}}</td>
+            <td>{{sharedService.getCustomTime(alarm.DateTime)}}</td>
         </tr>
 
     </tbody>

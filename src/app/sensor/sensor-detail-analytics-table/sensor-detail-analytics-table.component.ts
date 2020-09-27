@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SensorService } from '../shared/sensor.service';
 import { ActivatedRoute } from '@angular/router';
-import { SensorStatusEnum } from '@app/shared/services';
+import { SensorStatusEnum, SharedService } from '@app/shared/services';
 
 @Component({
   selector: 'app-sensor-detail-analytics-table',
@@ -15,7 +15,8 @@ export class SensorDetailAnalyticsTableComponent implements OnInit {
   sensorStatusEnum: typeof SensorStatusEnum;
   constructor(
     private sensorService: SensorService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {

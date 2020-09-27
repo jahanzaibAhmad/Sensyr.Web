@@ -152,16 +152,21 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
 
   filter() {
     const values = this.newAlarmModel;
-    let filter = this.term;
-    const keyArray = ['SensorId', 'SensorName', 'MachineName', 'TimeElapsed', 'SensorTypeName', 'LiveValue', 'DayMin', 'DayMax'];
-    if (!values || !values.length) { return []; }
-    if (!filter) { return values; }
+    if (this.term != null && this.term !== '') {
+      let filter = this.term;
+      const keyArray = ['SensorId', 'SensorName', 'MachineName', 'TimeElapsed', 'SensorTypeName', 'LiveValue', 'DayMin', 'DayMax'];
+      if (!values || !values.length) { return []; }
+      if (!filter) { return values; }
 
-    filter = filter.toUpperCase();
+      filter = filter.toUpperCase();
 
-    if (filter && Array.isArray(values)) {
-      const keys = keyArray;
-      this.alarmModel =  values.filter(v => v && keys.some(k => String(v[k]).toUpperCase().indexOf(filter) >= 0));
+      if (filter && Array.isArray(values)) {
+        const keys = keyArray;
+        this.alarmModel = values.filter(v => v && keys.some(k => String(v[k]).toUpperCase().indexOf(filter) >= 0));
+        this.totalCount = this.alarmModel.length;
+      }
+    } else {
+      this.alarmModel  = values;
       this.totalCount = this.alarmModel.length;
     }
   }

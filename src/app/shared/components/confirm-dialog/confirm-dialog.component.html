@@ -30,7 +30,7 @@
   </div> -->
 
 <!-- The sensor-modal -->
-<div id="mysensor-modal" [class]="isOpen ? 'display-block sensor-modal' : 'display-none sensor-modal'">
+<div id="mysensor-modal" (click)="close()" [class]="isOpen ? 'display-block sensor-modal' : 'display-none sensor-modal'">
 
     <div class="sensor-modal-content">
         <span class="close" (click)="close()">&times;</span>

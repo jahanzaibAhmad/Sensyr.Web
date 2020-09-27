@@ -1,7 +1,7 @@
 <div class="box-rounded">
     <div class="col-md-12 pd-0 box-container ov">
         <div class="tab-sensor-card-detail box-container ov" >
-            <div id="myModal" [class]="isImgExpand? 'image-modal display-block' : 'image-modal display-none'">
+            <div id="myModal" [class]="isImgExpand? 'image-modal display-block' : 'image-modal display-none'" (click)="imageExpand(false)">
                 <span class="close cp" (click)="imageExpand(false)">&times;</span>
                 <img class="image-modal-content" src="assets/images/sensor-machine/lg/Bearingless-wheelset.jpg" id="img01">
                 <div id="caption"></div>
@@ -12,7 +12,7 @@
 
                 <aside>
                     <h2>{{sensorModel.SensorName}}</h2>
-                    <h3>Sensor ID: {{sensorModel.SensorId}} • Assets: {{sensorModel.MachineName}}</h3>
+                    <h3>Sensor ID: {{sensorModel.SensorId}} • Asset: {{sensorModel.MachineName}}</h3>
                     <p class="temp-stats">{{sensorTypeName}}</p>
 
                     <div class="btn-group">

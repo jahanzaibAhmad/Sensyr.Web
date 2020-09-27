@@ -20662,6 +20662,7 @@ body.sb-l-m #sidebar_left.sidebar-light .sidebar-menu > li > a > .sidebar-title 
 }
 #sidebar_left.nano.affix {
   padding-bottom: 0;
+  z-index: 0;
 }
 #sidebar_left.affix.nano .tooltip {
   z-index: 9999 !important;
