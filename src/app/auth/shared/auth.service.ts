@@ -28,4 +28,10 @@ export class AuthService extends BaseService<any> {
     return this.http.post(environment.api_sensor_uri + '/' + this.apiService.authApi + this.authEndPoints.postLoginEndPoint, body);
   }
 
+  register(body: any): Observable<any> {
+    this.http = new HttpClient(this.httpBackend);
+    return this.http.post(environment.api_sensor_uri + '/' + this.apiService.authApi + this.authEndPoints.postRegisterEndPoint, body);
+  }
+
+
 }

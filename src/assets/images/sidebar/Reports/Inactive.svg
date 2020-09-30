@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Sidebar / Reports / Inactive</title>
+    <g id="Icons-/-Sidebar-/-Reports-/-Inactive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,2 C6.4545,2 2,6.455 2,12 C2,17.545 6.4545,22 12,22 C17.5455,22 22,17.545 22,12 C22,6.455 17.5455,2 12,2 Z M11.0909,3.909 L11.0909,11.091 L3.9091,11.091 C4.2727,7.273 7.2727,4.273 11.0909,3.909 Z M3.9091,12.909 L11.5455,12.909 L15.5455,19.364 C14.4545,19.909 13.2727,20.182 12,20.182 C7.8182,20.182 4.3636,17 3.9091,12.909 Z M17.0909,18.364 L12.9091,11.727 L12.9091,3.909 C17,4.364 20.1818,7.818 20.1818,12 C20.1818,14.636 19,16.909 17.0909,18.364 Z" id="Shape" fill="#B1B1C7"></path>
+    </g>
+</svg>

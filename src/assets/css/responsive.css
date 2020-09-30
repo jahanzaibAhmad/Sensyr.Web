@@ -1,0 +1,199 @@
+@media screen and (max-width: 991px) and (min-width: 768px) {
+	/*Gateway Page Starts*/
+	.theme-card .card-header .card-header-btns {
+		margin-top: 15px;
+	}
+}
+
+@media screen and (max-width: 767px) and (min-width: 320px) {
+	body {
+		margin: 0px;
+		padding: 12px;
+	}
+	.header{
+		padding: 12px;
+	}
+	.m-0-mobile {
+		margin: 0px;
+	}
+	.sidebar {
+		display: none;
+	}
+	.btn-primary, .btn-secondary, .btn-status.blue {
+		padding: 7px 15px;
+		font-size: 12px;
+	}
+	.icon-box-1 {
+		margin-bottom: 25px;
+	}
+	.info-card-header {
+		display: inline-block;
+	}
+	.info-card-header .info-card-btns {
+		text-align: left !important;
+		margin-top: 15px;
+	}
+	.info-card-header .info-card-btns .btn {
+		margin-bottom: 5px;
+	}
+	.theme-card .card-header{
+		padding: 20px 0px 0;
+	}
+	.theme-card .card-body {
+	    padding: 12px;
+	}
+	.btn-square, .btn-square-border{
+		display: inline-block;
+	}
+	.sensor-search-square .btn-square, .sensor-search-square .btn-square-border{
+	    margin-right: 1%;
+	    width: 48%;
+	    min-width: auto;
+	}
+	.theme-tabs {
+		margin-bottom: 15px;
+	}
+	.theme-tabs li a {
+		padding: 15px;
+		font-size: 12px;
+	}
+	.card-header .row {
+		margin: 0px;
+	}
+	.theme-tabs li a .counts {
+		font-size: 10px;
+		margin: 5px;
+	}
+	.sidebar-desktop {
+		display: none !important;
+	}
+	.sidebar-mobile {
+		display: block !important;
+	}
+	.header .menu-icon, .header .menu-icon img {
+		display: block;
+	}
+	.sensor-search-square {
+		padding: 20px 0px 0;
+    	width: 100%;
+	}
+	.sensor-search-square .form-control{
+		margin-right: 0;
+	}
+	.theme-card .card-header .card-header-btns {
+		display: block;
+	}
+	.sensor-search-square .sensor-search {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.gateway-cards .gateway-head{
+		padding: 12px;
+	}
+	.gateway-cards .gateway-status li{
+		font-size: 12px;
+		width: 100%;
+		padding: 0;
+		border-right: 0;
+	}
+	.gateway-cards .gateway-title{
+		margin-bottom: 8px;
+	}
+
+	.gateway-cards .gateway-dropdowns .drop-header {
+		display: block;
+		padding: 20px 12px 0;
+	}
+	.gateway-cards .gateway-dropdowns .drop-header .usage {
+		text-align: left;
+		margin-top: 15px;
+	}
+	.gateway-cards .gateway-dropdowns .gateway-dropdown {
+		min-width: auto;
+    	margin-bottom: 10px;
+    	width: calc(35% - 20px);
+	}
+	.gateway-cards .gateway-dropdowns .gateway-dropdown-content .head-img{
+		display: inline-block;
+    	vertical-align: middle;
+	}
+	.gateway-drop-text{
+		width: calc(100% - 85px);
+	}
+	.gateway-cards .gateway-dropdowns .gateway-dropdown-content .btn-gateway-red{
+		margin-left: 0;
+		margin-top: 12px;
+	}
+	.gateway-cards .gateway-dropdowns .gateway-dropdown-content.show{
+		padding: 12px;
+		flex-wrap: wrap;
+	}
+	.text-left-mobile {
+		text-align: left !important;
+	}
+	.data-storage-filters .btn-filter {
+		margin-bottom: 15px;
+	}
+	.data-left-top .data-storage-header {
+	    display: block !important;
+	}
+	.data-left-top .data-storage-header .data-storage-title {
+		margin-bottom: 15px;
+	}
+	.warning-form .form-buttons {
+		text-align: left;
+	}
+	.data-left-top .data-storage-header .btn-drop {
+		width: 100%;
+	}
+	.data-storage-body .pie-chart{
+		margin: 40px 0; 
+	}
+
+
+	/* Login Registration Responsivev*/
+
+	.login-box .login-image-box{
+		display: none;
+	}
+	.login-box .login-content{
+		padding: 16px;
+	}
+	.login-box .login-text-box .login-header {
+	    text-align: center;
+	    padding: 20px 0px;
+	    position: absolute;
+	    bottom: 0;
+	    width: 100%;
+	    box-sizing: border-box;
+	    left: 0;
+	}
+	.login-form .btn-login{
+		font-weight: bold;
+	}
+	.login-text-box{
+		height: auto !important;
+		margin-top: 40px;
+		position: relative;
+		padding-bottom: 100px;
+	}
+	.login-form form.small-padding.form-big {
+	    padding: 0;
+	    width: 100%;
+	    max-width: 100%;
+	}
+	.login-form .login-title{
+		font-size: 24px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+}

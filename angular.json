@@ -30,17 +30,21 @@
             "styles": [
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/ngx-toastr/toastr.css" ,
-              "src/assets/styles/theme.scss",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/style.css",
+              "src/assets/css/responsive.css",
+              "src/assets/css/sidebar.css",
               "src/styles.scss"
             ],
             "scripts": [
               "src/assets/js/jquery/jquery-1.11.3.min.js",
               "src/assets/js/jquery/jquery_ui/jquery-ui.min.js",
               "src/assets/js/jquery.magnific-popup.js",
+              "src/assets/js/popper.js",
               "src/assets/js/utility.js",
               "src/assets/js/main.js",
               "src/assets/js/dashboard.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js"
+              "src/assets/js/bootstrap.js"
             ]
           },
           "configurations": {

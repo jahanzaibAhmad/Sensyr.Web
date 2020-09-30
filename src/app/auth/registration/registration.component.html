@@ -1,1 +1,145 @@
-<p>registration works!</p>
+<div class="login-bg">
+    <!-- Login Page Starts -->
+    <section class="container-fluid login-box p-0">
+        <div class="login-image-box">
+            <div class="login-logo text-center">
+                <img src="assets/images/sensyr.svg" alt="logo" width="200">
+            </div>
+            <div class="login-graphic">
+                <img src="assets/images/login/login-graphic.svg" alt="login-image" class="img-fluid gra-image">
+                <h2 class="login-image-title">
+                    Manage and keep track of your sensors
+                </h2>
+                <p class="login-image-para">
+                    Welcome back. We only need your email and password, and you'll be on your way. Cum ad vidit
+                    iracundia scribentur, vide epicurei mei id, per eu nostrum
+                </p>
+            </div>
+        </div>
+        <div class="login-content">
+            <div class="login-logo-mobile d-block d-md-none text-center">
+                <img src="assets/images/sensyr.svg" alt="logo" width="160">
+            </div>
+            <div class="login-text-box vh-100">
+                <div class="login-header">
+                    <a email class="btn-square-plain">Already have an account?</a>
+                    <a (click)="login()" email class="btn btn-square-border">Sign In</a>
+                </div>
+                <div class="custom-form login-form">
+                    <form [formGroup]="registrationForm" novalidate>
+                        <h4 class="login-title">Get Started</h4>
+                        <p class="login-info">
+                            Welcome back. We only need your email and password, and you'll be on your way.
+                        </p>
+                        <div class="form-group">
+                            <!-- <label for="email">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter your email"> -->
+
+
+                            <label>First Name</label>
+                            <input type="text" class="form-control" maxlength="50" placeholder="Enter first name..."
+                                name="FirstName" formControlName="firstName" />
+                            <span
+                                *ngIf="registrationForm.controls.firstName.errors?.required &&  registrationForm.controls.firstName.touched"
+                                class="invalid-span">
+                                Please enter your first name
+                            </span>
+                            <span
+                                *ngIf="registrationForm.controls.firstName.errors?.pattern &&  registrationForm.controls.firstName.touched"
+                                class="invalid-span">
+                                First name field has invalid text
+                            </span>
+
+
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" maxlength="50" name="LastName"
+                                formControlName="lastName" placeholder="Enter last name...">
+                            <span
+                                *ngIf="registrationForm.controls.lastName.errors?.required &&  registrationForm.controls.lastName.touched"
+                                class="invalid-span">
+                                Please enter your last name
+                            </span>
+                            <span
+                                *ngIf="registrationForm.controls.lastName.errors?.pattern &&  registrationForm.controls.lastName.touched"
+                                class="invalid-span">
+                                Last name field has invalid text
+                            </span>
+
+                            <label>Email</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" maxlength="50" placeholder="Enter email..."
+                                    name="Email" formControlName="email" />
+                            </div>
+                            <span
+                                *ngIf="registrationForm.controls.email.errors?.required &&  registrationForm.controls.email.touched"
+                                class="invalid-span">
+                                Please enter your email
+                            </span>
+                            <span
+                                *ngIf="registrationForm.controls.email.errors?.pattern &&  registrationForm.controls.email.touched"
+                                class="invalid-span">
+                                Email is not valid
+                            </span>
+
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Username..." name="Username"
+                                maxlength="50" formControlName="username">
+
+                            <span
+                                *ngIf="registrationForm.controls.username.errors?.required &&  registrationForm.controls.username.touched"
+                                class="invalid-span">
+                                Please enter your username
+                            </span>
+                            <span class="invalid-span"
+                                *ngIf="registrationForm.controls.username.errors?.pattern  &&  registrationForm.controls.username.touched">
+                                Special charachter is not allowed
+                            </span>
+
+
+                            <label>Phone Number</label>
+                            <input type="text" class="form-control" formControlName="phoneNumber" [maxlength]="20"
+                                placeholder="Enter phone number...">
+
+                            <span
+                                *ngIf="registrationForm.controls.phoneNumber.errors?.pattern  && registrationForm.controls.phoneNumber.touched"
+                                class="invalid-span">
+                                Phone number is not valid
+                            </span>
+                            <span
+                                *ngIf="registrationForm.controls.phoneNumber.errors?.required &&  registrationForm.controls.phoneNumber.touched"
+                                class="invalid-span">
+                                Please enter your phone number
+                            </span>
+
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Password" name="psw"
+                                formControlName="password" required>
+                            <span
+                                *ngIf="registrationForm.controls.password.errors?.pattern && registrationForm.controls.phoneNumber.touched"
+                                class="invalid-span">
+                                An upper case, a lower case, a digit, a special character, min length 8
+                            </span>
+                            <span
+                                *ngIf="registrationForm.controls.password.errors?.required &&  registrationForm.controls.phoneNumber.touched"
+                                class="invalid-span">
+                                Please enter your password
+                            </span>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="login-checkbox">
+                                By Signing up, you are agreeing to our Privacy Policy & Terms of use
+                                <input type="checkbox" checked="checked"  formControlName="terms">
+                                <span class="checkmark">
+                                    <!-- <img src="assets/images/checkmark-active.svg"> -->
+                                </span>
+                            </label>
+                        </div>
+                        <button class="btn btn-theme btn-login" (click)="register()"  [disabled]="registrationForm.invalid" >Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

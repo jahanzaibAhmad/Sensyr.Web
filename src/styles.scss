@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+    @import "assets/styles/theme.scss";
 
 .table-main {
     display: block;
@@ -9,23 +10,31 @@ text.highcharts-credits {
     display: none;
 }
 
-.display-block{
+.display-block {
     display: block;
-  }
+}
 
-  .display-none{
+.display-none {
     display: none;
-  }
+}
 
-  .ngx-pagination .current {
+.ngx-pagination .current {
     border-radius: 50% !important;
     min-width: 27px !important;
-    background: #3241D3 !important;
+    background: #3241d3 !important;
 }
 
-.ov{
+.ov {
     overflow: visible;
 }
+
+.invalid-span {
+    display: block;
+    height: 15px;
+    font-size: 12px;
+    color: red;
+}
+
 @media (max-width: 1385px) {
     .alarm-left {
         width: 135px !important;

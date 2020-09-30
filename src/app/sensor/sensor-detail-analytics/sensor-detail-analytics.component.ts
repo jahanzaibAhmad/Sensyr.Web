@@ -40,8 +40,8 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sensorId = +this.activatedRoute.snapshot.params.sensorId;
     this.getSensorDetailAnalyticsPerformance();
-    // this.getSensorDetailAnalyticsStatus();
-    this.getTestDetail();
+    this.getSensorDetailAnalyticsStatus();
+    // this.getTestDetail();
 
   }
 
