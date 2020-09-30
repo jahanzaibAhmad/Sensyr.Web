@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cp" *ngFor="let alarm of alarmModel | paginate: {itemsPerPage: 5, currentPage: p, totalItems: totalCount}" (click)="sensorDetail(alarm)">
+                    <tr class="cp" *ngFor="let alarm of alarmModel | orderBy: order : true  | paginate: {itemsPerPage: 5, currentPage: p, totalItems: totalCount}  " (click)="sensorDetail(alarm)">
                         <td>
                             <div class="sensor-pic">
                                 <img src="assets/images/sensor-machine/mark-7.jpg">
@@ -30,7 +30,7 @@
                                 <span>{{alarm.MachineName}}</span>
                             </div>
                         </td>
-                        <td>{{alarm.TimeElapsed}}</td>
+                        <td>{{ calculateTimeElasped(alarm.DateTime,alarm.TimeElapsed) }}</td>
                         <td>{{alarm.SensorTypeName}}</td>
                         <td> {{alarm.LiveValue}}˚C</td>
                         <td>{{alarm.DayMin}}˚C</td>

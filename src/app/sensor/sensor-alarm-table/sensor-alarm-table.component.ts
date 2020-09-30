@@ -6,6 +6,7 @@ import { Subscription, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-sensor-alarm-table',
@@ -25,12 +26,16 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
   totalCount: number;
   p: any;
   term: string;
+  order: string = 'TimeElapsed';
   constructor(
     private sensorService: SensorService,
     private signalRService: SignalRService,
     private toastrService: ToastrService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private orderPipe: OrderPipe
+  ) {
+    console.log(this.orderPipe.transform(this.alarmModel, this.order)); // both this.array and this.order are from above example AppComponen
+  }
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -166,8 +171,39 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
         this.totalCount = this.alarmModel.length;
       }
     } else {
-      this.alarmModel  = values;
+      this.alarmModel = values;
       this.totalCount = this.alarmModel.length;
     }
   }
+
+
+  calculateTimeElasped(date, timeElasped) {
+    let startTime;
+    startTime = new Date(date);
+    let endTime;
+    endTime = new Date();
+    let timeDiff = endTime - startTime;
+    // strip the miliseconds
+    timeDiff /= 1000;
+    // get seconds
+    const seconds = Math.round(timeDiff % 60);
+    // remove seconds from the date
+    timeDiff = Math.floor(timeDiff / 60);
+    // get minutes
+    let minutes = Math.round(timeDiff % 60);
+    if (timeElasped && timeElasped > 0) {
+      minutes = minutes + timeElasped;
+    }
+    // remove minutes from the date
+    timeDiff = Math.floor(timeDiff / 60);
+    // get hours
+    const hours = Math.round(timeDiff % 24);
+    // remove hours from the date
+    timeDiff = Math.floor(timeDiff / 24);
+    // the rest of timeDiff is number of days
+    const days = timeDiff;
+    console.log(days + ' days, ' + hours + ':' + minutes + ':' + seconds);
+    return days + ' days, ' + hours + ':' + minutes + ':' + seconds;
+  }
+
 }

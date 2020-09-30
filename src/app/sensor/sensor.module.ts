@@ -15,7 +15,8 @@ import { SensorDetailAnalyticsComponent } from './sensor-detail-analytics/sensor
 import { DataTablesModule } from 'angular-datatables';
 import { SensorAlarmDetailComponent } from './sensor-alarm-detail/sensor-alarm-detail.component';
 import { SensorDetailAnalyticsTableComponent } from './sensor-detail-analytics-table/sensor-detail-analytics-table.component';
-
+import { OrderModule } from 'ngx-order-pipe';
+import { DateAgoPipe } from '@app/shared/pipes';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,15 @@ import { SensorDetailAnalyticsTableComponent } from './sensor-detail-analytics-t
     SensorDetailFormComponent,
     SensorDetailAnalyticsComponent,
     SensorAlarmDetailComponent,
-    SensorDetailAnalyticsTableComponent],
+    SensorDetailAnalyticsTableComponent,
+    DateAgoPipe
+  ],
   imports: [
     CommonModule,
     SensorRoutingModule,
     SharedModule,
-    DataTablesModule
+    DataTablesModule,
+    OrderModule
   ],
   entryComponents: [
     SensorGroupFormComponent,

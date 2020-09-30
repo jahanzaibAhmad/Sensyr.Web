@@ -1,1 +1,2 @@
-export * from '@app/shared/pipes/filter.pipe';
+export * from '../pipes/filter.pipe';
+export * from '../pipes/date-ago.pipe';

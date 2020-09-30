@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '@app/shared/_modal/modal.module';
 import { ConfirmDialogModule } from '@app/shared/components/confirm-dialog/confirm-dialog.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe } from '@app/shared/pipes/filter.pipe';
+import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoPipe} from '@app/shared/pipes';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe } from '@
     rowPipe,
     searchPipe,
     ReversePipe,
-    searchTabelPipe
+    searchTabelPipe,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,7 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe } from '@
     ConfirmDialogModule,
     Ng2SearchPipeModule,
     FormsModule,
-    searchPipe
+    searchPipe,
   ]
 })
 export class SharedModule {
