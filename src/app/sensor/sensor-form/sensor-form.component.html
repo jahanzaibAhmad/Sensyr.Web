@@ -1,40 +1,43 @@
-<div class="box-rounded">
+<div class="o-theme">
+    <div class="box-rounded">
 
-    <div class="header-container">
-        <div class="col-md-6 col-sm-12 pd-l-0">
-            <h1>Sensors</h1>
-        </div>
-        <div class="col-md-6 col-sm-12 pd-r-0">
-            <div class="header-buttons">
-                <a class="btn-light-inverse">Add Gateway</a>
-                <a class="btn-light-inverse">Add Sensor</a>
+        <div class="header-container">
+            <div class="col-md-6 col-sm-12 pd-l-0">
+                <h1>Sensors</h1>
+            </div>
+            <div class="col-md-6 col-sm-12 pd-r-0">
+                <div class="header-buttons">
+                    <a class="btn-light-inverse">Add Gateway</a>
+                    <a class="btn-light-inverse">Add Sensor</a>
+                </div>
             </div>
         </div>
+
+        <div class="sub-header-tabs-container">
+            <h2>Opened Alarms</h2>
+            <ul class="tab-days">
+                <li>
+                    <a>Active</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Sensor Alarm Detail -->
+        <app-sensor-alarm-detail></app-sensor-alarm-detail>
+        <!-- Sensor Alarm Detail Table -->
+
+        <!-- Sensor and Machine Table -->
+        <app-sensor-alarm-table></app-sensor-alarm-table>
+        <!-- Sensor and Machine Table End -->
     </div>
+    <!-- Sensor Machine Total -->
+    <app-sensor-machine-total></app-sensor-machine-total>
+    <!-- Sensor Machine Total End-->
 
-    <div class="sub-header-tabs-container">
-        <h2>Opened Alarms</h2>
-        <ul class="tab-days">
-            <li>
-                <a>Active</a>
-            </li>
-        </ul>
-    </div>
+    <!-- Sensor Table -->
+    <app-sensor-table></app-sensor-table>
+    <!-- Sensor Table End -->
 
-  
-
-    <!-- Sensor Alarm Detail -->
-    <app-sensor-alarm-detail></app-sensor-alarm-detail>
-    <!-- Sensor Alarm Detail Table -->
-
-    <!-- Sensor and Machine Table -->
-    <app-sensor-alarm-table></app-sensor-alarm-table>
-    <!-- Sensor and Machine Table End -->
 </div>
-<!-- Sensor Machine Total -->
-<app-sensor-machine-total></app-sensor-machine-total>
-<!-- Sensor Machine Total End-->
-
-<!-- Sensor Table -->
-<app-sensor-table></app-sensor-table>
-<!-- Sensor Table End -->

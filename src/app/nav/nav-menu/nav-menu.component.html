@@ -1,104 +1,84 @@
 <div id="main">
-    <aside id="sidebar_left" class="nano nano-light affix has-scrollbar">
 
-        <div class="menu btn11" data-menu="11">
-            <div class="icon-left"></div>
-            <div class="icon-right"></div>
+
+    <!-- Sidebar Starts -->
+    <div class="sidebar sidebar-dark sidebar-desktop">
+        <div class="logo">
+            <img src="assets/images/logo-white.svg">
         </div>
 
-        <!-- -------------- Sidebar Left Wrapper  -------------- -->
-        <div class="sidebar-left-content nano-content" tabindex="0" style="margin-right: -7px; overflow-y: hidden;">
-            <a class="navbar-logo-text" href="#">
-                <img src="assets/images/Logo.svg">
-            </a>
+        <ul class="sidebar-nav">
+            <li class="machine-icon" routerLinkActive="active">
+                <a [routerLink]="['/', 'app','machine']">
+                    <img src="assets/images/sidebar/Assets/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Assets/Active.svg" alt="icon" class="icon-white">
 
-            <!-- -------------- Sidebar Menu  -------------- -->
-            <ul class="nav sidebar-menu">
-
-                <!-- <li class="sidebar-label pt30">Menu</li> -->
-
-                <li class="machine-icon" routerLinkActive="active">
-                    <a [routerLink]="['/', 'app','machine']">
-                        <span class="sidebar-title"  >Assets</span>
-                    </a>
-                </li>
-
-                <li class="sensor-icon" routerLinkActive="active">
-                    <a class="accordion-toggle" [routerLink]="['/', 'app','sensor']">
-                        <span class="sidebar-title">Sensors</span>
-                    </a>
-                </li>
-
-
-                <li class="user-icon">
-                    <a class="accordion-toggle" href="#">
-                        <span class="sidebar-title">Users</span>
-                    </a>
-                </li>
-                <li class="reports-icon">
-                    <a class="accordion-toggle" href="#">
-                        <span class="sidebar-title">Reports</span>
-                    </a>
-                </li>
-                <li class="settings-icon">
-                    <a class="accordion-toggle" href="#">
-                        <span class="sidebar-title">Settings</span>
-                    </a>
-                </li>
+                    <span class="sidebar-title">Assets</span>
+                </a>
+            </li>
+            <li class="sensor-icon" routerLinkActive="active">
+                <a class="accordion-toggle" [routerLink]="['/', 'app','sensor']">
+                    <img src="assets/images/sidebar/Sensors/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Sensors/Active.svg" alt="icon" class="icon-white">
+                    <span>Sensors</span>
+                </a>
+            </li>
+            <li class="sensor-icon" routerLinkActive="active">
+                <a class="accordion-toggle" [routerLink]="['/', 'app', 'gateway']">
+                    <img src="assets/images/sidebar/Gateways/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Gateways/Active.svg" alt="icon" class="icon-white">
+                    <span>Gateways</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="assets/images/sidebar/Users/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Users/Active.svg" alt="icon" class="icon-white">
+                    <span>Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="assets/images/sidebar/Reports/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Reports/Active.svg" alt="icon" class="icon-white">
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="assets/images/sidebar/Settings/Inactive.svg" alt="icon" class="icon-light">
+                    <img src="assets/images/sidebar/Settings/Active.svg" alt="icon" class="icon-white">
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Sidebar Ends -->
+    <!-- Page Body Starts -->
+    <!-- Header Starts -->
+    <header class="header">
+        <div class="menu-icon">
+            <img src="assets/images/menu.svg" class="img-fluid">
+        </div>
+        <div class="header-left">
+            <h4 class="header-title d-none d-md-block">{{welcomeStatus}}, Riley</h4>
+            <p class="header-date d-none d-md-block"> {{time}}, {{date}}</p>
+        </div>
+        <div class="header-right">
+            <ul>
+                <li class="notification-icon"><img src="assets/images/notification.svg" alt="icon"></li>
+                <li><img src="assets/images/user-profile.svg" alt="icon"></li>
             </ul>
-            <!-- -------------- /Sidebar Menu  -------------- -->
         </div>
-        <!-- -------------- /Sidebar Left Wrapper  -------------- -->
-        <div class="nano-pane" style="display: block;">
-            <div class="nano-slider" style="height: 41px; transform: translate(0px, 0px);"></div>
-        </div>
-    </aside>
+    </header>
+    <!-- Header Ends -->
 
-    
     <!-- BODY -->
-    <section id="content_wrapper">
-        <!-- -------------- Column Center -------------- -->
-        <section id="content" class="table-layout animated fadeIn">
-    
-            <div class="chute chute-center">
-    
-                <div class="time-notification-section box-rounded">
-                    <div class="row row-box-rounded">
-                        <div class="col-md-6 col-sm-12 pd-l-0">
-                            <span class="day-status"> {{welcomeStatus}}, Riley</span>
-                            <span class="time-status">
-                                <span class="time-move"> {{time}}</span> 
-                                <span>, {{date}}</span>
-                            </span>
-                        </div>
-                        <div class="col-md-6 col-sm-12 pd-r-0">
-                            <ul class="nav-notification">
-    
-                                <li>
-                                    <a  class="notify-icon">
-                                        <span class="active">&nbsp;</span>
-                                        <img src="assets/images/icon-notification.svg" alt="">
-                                    </a>
-                                </li>
-    
-                                <li>
-                                    <a class="filter-by-btn">
-                                        <img src="assets/images/user-avatar.svg" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-    
-               
-                <app-breadcrumb></app-breadcrumb>
-                <div class="theme-css">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </section>
-    
+    <section class="theme-card">
+        <app-breadcrumb></app-breadcrumb>
+        <div class="theme-css">
+            <router-outlet></router-outlet>
+        </div>
     </section>
 
 </div>

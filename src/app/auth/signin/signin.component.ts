@@ -4,6 +4,7 @@ import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core/services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
+import { ValidationService } from '@app/shared/validators';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +19,8 @@ export class SigninComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private validationService: ValidationService
 
   ) { }
 
@@ -30,6 +32,7 @@ export class SigninComponent implements OnInit {
     this.signinForm = this.formBuilder.group({
       email: [null, Validators.compose([
         Validators.required,
+        Validators.pattern(this.validationService.regEmail),
       ])],
       password: [null, Validators.compose([
         Validators.required,

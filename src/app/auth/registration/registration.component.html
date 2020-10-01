@@ -115,12 +115,12 @@
                             <input type="password" class="form-control" placeholder="Enter Password" name="psw"
                                 formControlName="password" required>
                             <span
-                                *ngIf="registrationForm.controls.password.errors?.pattern && registrationForm.controls.phoneNumber.touched"
+                            *ngIf="registrationForm.controls.password.errors?.pattern && registrationForm.controls.password.touched"
                                 class="invalid-span">
                                 An upper case, a lower case, a digit, a special character, min length 8
                             </span>
                             <span
-                                *ngIf="registrationForm.controls.password.errors?.required &&  registrationForm.controls.phoneNumber.touched"
+                                *ngIf="registrationForm.controls.password.errors?.required &&  registrationForm.controls.password.touched"
                                 class="invalid-span">
                                 Please enter your password
                             </span>
