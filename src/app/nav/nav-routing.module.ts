@@ -17,6 +17,13 @@ const myChildren: any = [
     data: {
       breadcrumb: 'Assets'
     },
+  },
+  {
+    path: 'gateway',
+    loadChildren: () => import('@app/gateway/gateway.module').then(m => m.GatewayModule),
+    data: {
+      breadcrumb: 'Gateway'
+    },
   }
 ];
 

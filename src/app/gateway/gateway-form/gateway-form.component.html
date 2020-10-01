@@ -1,0 +1,76 @@
+<div class="card-header d-block no-border">
+    <div class="row">
+        <div class="col-lg-4">
+            <h4 class="card-title purple"><b>Gateways</b></h4>
+        </div>
+        <div class="col-lg-8">
+            <div class="card-header-btns sensor-search-square">
+                <div class="input-group sensor-search">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i aria-hidden="true"><img width="20" src="assets/images/gateway/search.svg"></i>
+                        </span>
+                    </div>
+                    <input type="search" class="form-control" placeholder="Search gateway by name, ID, variant ID" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <a href="#" class="btn btn-square-border mr-10">Filter/Sort</a>
+                <a href="#" class="btn-square mr-10" data-toggle="modal" data-target="#gatwayModal-1">Add Gateway</a>
+            </div>
+            <!-- Add Gateway Modal -->
+            <div class="modal fade gateway-modal" id="gatwayModal-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Gateway Info</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
+                            </button>
+                        </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Gateway Name</label>
+                                <input type="text" class="form-control" placeholder="Enter gateway name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Gateway ID</label>
+                                <input type="text" class="form-control" placeholder="Enter gateway ID">
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleFormControlSelect1">Variant</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-square-plain" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-square">Add & Proceed</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs theme-tabs with-border" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="individual_sensor" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                        Gateway List
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="sensor_groups" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                        Data Usage Analysis
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
