@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h5 class="modal-title">Add Gateway Info</h5>
+    <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="gatewayForm" novalidate>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Gateway Name</label>
+            <input type="text" class="form-control" placeholder="Enter gateway name" name="gatewayName"
+                formControlName="gatewayName">
+            <span
+                *ngIf="gatewayForm.controls.gatewayName.errors?.required &&  gatewayForm.controls.gatewayName.touched"
+                class="invalid-span">
+                Please enter your gateway name
+            </span>
+            <span
+                *ngIf="gatewayForm.controls.gatewayName.errors?.pattern &&  gatewayForm.controls.figatewayNamerstName.touched"
+                class="invalid-span">
+                Gateway name field has invalid text
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Gateway ID</label>
+            <input type="text" class="form-control" placeholder="Enter gateway ID" name="gatewayID"
+                formControlName="gatewayID"  minlength="6">
+            <span
+                *ngIf="gatewayForm.controls.gatewayID.errors?.required &&  gatewayForm.controls.gatewayID.touched"
+                class="invalid-span">
+                Please enter your gateway ID
+            </span>
+            <span
+                *ngIf="gatewayForm.controls.gatewayID.errors?.pattern &&  gatewayForm.controls.gatewayID.touched"
+                class="invalid-span">
+                Gateway ID field has invalid text
+            </span>
+            <span *ngIf="gatewayForm.controls.gatewayID.errors?.minlength && !gatewayForm.controls.gatewayID.errors?.required
+            && !gatewayForm.controls.gatewayID.errors?.pattern"
+          class="invalid-span">
+          Gateway ID must contain 6 characters
+    </span>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Variant</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="variantID"
+            formControlName="variantID">
+                <option [ngValue]="null">Choose Variant</option>
+                <option *ngFor="let variant of variantModel" [ngValue]="variant.VariantId" >
+                    {{variant.VariantDescription}}
+                </option>
+            </select>
+            <span
+                *ngIf="gatewayForm.controls.variantID.errors?.required &&  gatewayForm.controls.variantID.touched"
+                class="invalid-span">
+                Please enter your variant ID
+            </span>
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-square-plain" (click)="close()">Cancel</button>
+    <button type="button" class="btn btn-square" (click)="save()"  [disabled]="gatewayForm.invalid">Add & Proceed</button>
+</div>

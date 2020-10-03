@@ -29,7 +29,7 @@ export class SensorService extends BaseService<any> {
     ) {
     super(
       httpClient,
-      environment.api_sensor_uri);
+      environment.api_uri);
   }
 
   getAlaramDetails(): Observable<any> {

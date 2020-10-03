@@ -23,7 +23,8 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoP
     NgbModule,
     ConfirmDialogModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -34,6 +35,7 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoP
     Ng2SearchPipeModule,
     FormsModule,
     searchPipe,
+    NgbModule
   ]
 })
 export class SharedModule {

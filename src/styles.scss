@@ -38,6 +38,13 @@ text.highcharts-credits {
     color: red;
 }
 
+.gateway-modal {
+    .modal-content {
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 1385px) {
     .alarm-left {
         width: 135px !important;
