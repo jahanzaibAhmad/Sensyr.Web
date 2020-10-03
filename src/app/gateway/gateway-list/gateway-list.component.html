@@ -1,0 +1,162 @@
+<section class="gateway-section">
+    <div class="gateway-cards" *ngFor="let gateway of gatewayListModel">
+        <div class="gateway-head">
+            <div class="gateway-head-left">
+                <h4 class="gateway-title">{{gateway.GatewayName}}</h4>
+                <ul class="gateway-status">
+                    <li>ID: {{gateway.GatewayID}}</li>
+                    <li>Variant ID: {{gateway.VariantId}}</li>
+                    <li>VariantName</li>
+                </ul>
+            </div>
+            <div class="gateway-head-right">
+                <span class="toggle-icon">
+                    <div class="dropdown">
+                        <button class="btn btn-drop" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/gateway/toggle.svg">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item">
+                                <img src="assets/images/gateway/deactivate.svg">
+                                Deactivate
+                            </a>
+                            <a class="dropdown-item">
+                                <img src="assets/images/gateway/edit.svg">
+                                Edit
+                            </a>
+                            <a class="dropdown-item">
+                                <img src="assets/images/gateway/delete.svg">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="gateway-dropdowns"  *ngIf="gateway.GatewayPorts" >
+            <div class="drop-header">
+                <div>
+                    <a  *ngFor="let gatewayPort of gateway.GatewayPorts"  
+                     data-toggle="collapse" href="#gateway_drop" [class]="gatewayPort.GatewayPortSensor ? 'gateway-dropdown collapsed' : 'gateway-dropdown gateway-add'"
+                        role="button" aria-expanded="false" aria-controls="gateway_drop">
+                        {{gatewayPort.PortName}}
+                    </a>
+                    <!-- <a class="gateway-dropdown collapsed" href="#" role="button" aria-expanded="false"
+                        aria-controls="">
+                        Port 2
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 3
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 4
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 5
+                    </a> -->
+                </div>
+                <div class="data-usage">
+                    <h4 class="usage">Data usage till date : </h4>
+                </div>
+            </div>
+            <div class="drop-body">
+                <div class="collapse gateway-dropdown-content" id="gateway_drop">
+                    <div class="head-img">
+                        <img src="assets/images/gateway/furnace-image.png" alt="image">
+                    </div>
+                    <div class="gateway-drop-text">
+                        <h4 class="title-1">Sensor ID: 23456</h4>
+                        <h3 class="title-2">Mark 7 Chute Tri Chromatic Color Sorter</h3>
+                        <h4 class="title-3"><img src="assets/images/gateway/temprature.svg">Temperature</h4>
+                    </div>
+                    <a href="#" class="btn btn-gateway-red">Disconnect</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="gateway-cards">
+        <div class="gateway-head">
+            <div class="gateway-head-left">
+                <h4 class="gateway-title">Forcepoint Web Security</h4>
+                <ul class="gateway-status">
+                    <li>ID: 7738</li>
+                    <li>Variant ID: SEN8849003</li>
+                    <li>1 volt 5 ports gateway</li>
+                </ul>
+            </div>
+            <div class="gateway-head-right">
+                <span class="toggle-icon">
+                    <div class="dropdown">
+                        <button class="btn btn-drop" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/gateway/toggle.svg">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/images/gateway/deactivate.svg">
+                                Deactivate
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/images/gateway/edit.svg">
+                                Edit
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/images/gateway/delete.svg">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="gateway-dropdowns">
+            <div class="drop-header">
+                <div>
+                    <a class="gateway-dropdown collapsed" data-toggle="collapse" href="#gateway_drop"
+                        role="button" aria-expanded="false" aria-controls="gateway_drop">
+                        Port 1
+                    </a>
+                    <a class="gateway-dropdown collapsed" href="#" role="button" aria-expanded="false"
+                        aria-controls="">
+                        Port 2
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 3
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 4
+                    </a>
+                    <a class="gateway-dropdown gateway-add" data-toggle="modal"
+                        data-target="#attach_sensor">
+                        Port 5
+                    </a>
+                </div>
+                <div class="data-usage">
+                    <h4 class="usage">Data usage till date : 100GB</h4>
+                </div>
+            </div>
+            <div class="drop-body">
+                <div class="collapse gateway-dropdown-content" id="gateway_drop">
+                    <div class="head-img">
+                        <img src="assets/images/gateway/furnace-image.png" alt="image">
+                    </div>
+                    <div class="gateway-drop-text">
+                        <h4 class="title-1">Sensor ID: 23456</h4>
+                        <h3 class="title-2">Mark 7 Chute Tri Chromatic Color Sorter</h3>
+                        <h4 class="title-3"><img src="assets/images/gateway/temprature.svg">Temperature</h4>
+                    </div>
+                    <a href="#" class="btn btn-gateway-red">Disconnect</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</section>

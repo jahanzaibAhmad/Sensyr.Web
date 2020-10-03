@@ -11,6 +11,7 @@ export class SensorEndPoints {
     public readonly getSensorDetailAnalyticsPerformanceEndPoint = 'GetSensorDetailAnalyticsPerformance';
     public readonly getSensorDetailAnalyticsStatusEndPoint = 'GetSensorDetailAnalyticsStatus';
     public readonly getSensorDetailLastTransactionsEndPoint = 'GetSensorDetailLastTransactions';
+    public readonly getAttachSensorsForPortGatewaySearchEndPoint = 'GetAttachSensorsForPortGatewaySearch';
 
 }
 

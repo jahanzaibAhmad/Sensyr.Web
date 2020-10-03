@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalManager } from 'ngb-modal';
 import { GatewayAddComponent } from '../gateway-add/gateway-add.component';
@@ -10,12 +11,22 @@ import { GatewayAddComponent } from '../gateway-add/gateway-add.component';
 })
 export class GatewayFormComponent implements OnInit {
 
+  gatewayTableForm: FormGroup;
+  @Output() searchClick = new EventEmitter<{ searchText: any }>();
   constructor(
     private ngbModal: NgbModal,
+    private formBuilder: FormBuilder
 
   ) { }
 
   ngOnInit(): void {
+    this.bindForm();
+  }
+
+  private bindForm() {
+    this.gatewayTableForm = this.formBuilder.group({
+      searchText: ['']
+    });
   }
 
 
@@ -30,6 +41,14 @@ export class GatewayFormComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+
+  search() {
+    const searchText = this.gatewayTableForm.value.searchText;
+    if (!(searchText === '' && searchText == null)) {
+      this.searchClick.emit(searchText);
+    }
   }
 
 }

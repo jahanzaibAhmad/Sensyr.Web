@@ -24,7 +24,7 @@ export class GatewayAddComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this. getTotalAlarmsStatuses();
+    this.getVariants();
     this.bindForm();
   }
 
@@ -45,7 +45,7 @@ export class GatewayAddComponent implements OnInit {
   }
 
 
-  getTotalAlarmsStatuses() {
+  getVariants() {
     this.gatewayService.getVariants().subscribe(
       data => {
         this.variantModel = data.Data;

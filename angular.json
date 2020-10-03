@@ -37,13 +37,13 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/jquery/jquery-1.11.3.min.js",
-              "src/assets/js/jquery/jquery_ui/jquery-ui.min.js",
-              "src/assets/js/jquery.magnific-popup.js",
-              "src/assets/js/popper.js",
               "src/assets/js/utility.js",
               "src/assets/js/main.js",
               "src/assets/js/dashboard.js",
+              "src/assets/js/jquery/jquery-3.5.1.min.js",
+              "src/assets/js/jquery/jquery_ui/jquery-ui.min.js",
+              "src/assets/js/jquery.magnific-popup.js",
+              "src/assets/js/popper.js",
               "src/assets/js/bootstrap.js"
             ]
           },
