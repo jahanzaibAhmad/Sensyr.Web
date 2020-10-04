@@ -107,6 +107,7 @@ export class GatewayListComponent implements OnInit {
     });
     modalRef.componentInstance.data = gatewayPort;
     modalRef.result.then((result) => {
+      this.getGateways();
     }).catch((error) => {
       console.log(error);
     });
