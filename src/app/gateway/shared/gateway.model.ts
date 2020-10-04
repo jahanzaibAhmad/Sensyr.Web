@@ -20,3 +20,14 @@
         BranchID: number;
         GatewayPorts: GatewayPortModel[];
     }
+
+    export interface GatewayAttachSensorListModel {
+        SensorId: string;
+        SensorName: string;
+        MachineId: number;
+        SensorTypeId: number;
+        GatewayId: number;
+        DataTypeId: number;
+        SensorTemplateId?: any;
+        SensorTypeName: string;
+    }

@@ -1,0 +1,48 @@
+    <div class="modal-header">
+    <h5 class="modal-title">
+        <span>Port 2</span>
+        Attach a Sensor
+    </h5>
+    <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label>Search Sensor</label>
+            <div class="input-group sensor-search" data-toggle="collapse" href="#modal_drop" role="button"
+                aria-expanded="true" aria-controls="modal_drop">
+                <input type="search" class="form-control" placeholder="Enter Sensor Name or ID" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <img src="assets/images/gateway/search.svg">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-dropdown collapse" id="modal_drop">
+        <ul class="sensorlist-box">
+            <li [class.selected]="selectedSensorId == sensor.SensorId" *ngFor="let sensor of gatewayAttachSensorListModel; let i = index;"
+            (click)="selectedSensor(sensor.SensorId)">
+                <div class="image-left">
+                    <img src="assets/images/gateway/image.png" class="img-fluid image-1">
+                </div>
+                <div class="right-text">
+                    <h4 class="title-1">Sensor ID: {{sensor.SensorId}}</h4>
+                    <h4 class="title-2">{{sensor.SensorName}}</h4>
+                    <h4 class="title-3">
+                        <img src="assets/images/gateway/temprature.svg">
+                        {{sensor.SensorTypeName}}
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-square-plain" data-dismiss="modal" (click)="close()">Cancel</button>
+    <button type="button" class="btn btn-square" (click)="attachSensorToGatewayPort()">Add & Proceed</button>
+</div>

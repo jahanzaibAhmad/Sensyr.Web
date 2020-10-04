@@ -39,8 +39,8 @@
             <div class="drop-header">
                 <div>
                     <a *ngFor="let gatewayPort of gateway.GatewayPorts" data-toggle="collapse"
-                        (click)="openPanel(gatewayPort.GatewayPortID, gatewayPort, gateway.GatewayPorts)"
-                        [class]="gatewayPort.GatewayPortSensorId ? gatewayPort.show? 'gateway-dropdown' : 'gateway-dropdown collapsed' : 'gateway-dropdown gateway-add'"
+                        (click)="openPanel(gatewayPort, gateway.GatewayPorts)"
+                        [class]="gatewayPort.GatewayPortSensorId ? (gatewayPort.show? 'gateway-dropdown' : 'gateway-dropdown collapsed') : 'gateway-dropdown gateway-add'"
                         role="button" aria-expanded="false" aria-controls="gateway_drop">
                         {{gatewayPort.PortName}}
                     </a>

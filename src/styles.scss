@@ -57,6 +57,15 @@ text.highcharts-credits {
     margin-top: 0px;
 }
 
+.sensorlist-box{
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.sensorlist-box li.selected {
+    background: #dedede;
+}
+
 @media (max-width: 1385px) {
     .alarm-left {
         width: 135px !important;

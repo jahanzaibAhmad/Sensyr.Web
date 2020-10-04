@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { GatewayListModel } from '@app/gateway/shared/gateway.model';
 import { ConstantService } from '@app/shared/services';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GatewaySensorListComponent } from '../gateway-sensor-list/gateway-sensor-list.component';
 import { GatewayService } from '../shared/gateway.service';
 
 @Component({
@@ -18,7 +21,9 @@ export class GatewayListComponent implements OnInit {
   constructor(
     private gatewayService: GatewayService,
     private toastrService: ToastrService,
-    private constantService: ConstantService
+    private constantService: ConstantService,
+    private ngbModal: NgbModal,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -69,8 +74,9 @@ export class GatewayListComponent implements OnInit {
       });
   }
 
-  openPanel(portID, gatewayPort, gatewayPorts) {
-    if (portID) {
+  openPanel(gatewayPort, gatewayPorts) {
+    const portID = gatewayPort.GatewayPortID;
+    if (gatewayPort.GatewayPortSensorId) {
       const portShow = this.constantService.detachObject(!gatewayPort.show);
       if (portShow && !(this.sensorModel['sensorId' + portID])) {
         this.getGatewayPortSensorDetails(portID);
@@ -78,7 +84,7 @@ export class GatewayListComponent implements OnInit {
       this.magagePorts(gatewayPort, gatewayPorts);
 
     } else {
-      // alert('Pop');
+      this.openGatewayAdd(gatewayPort);
     }
   }
 
@@ -90,6 +96,20 @@ export class GatewayListComponent implements OnInit {
       }
     });
     gatewayPort.show = portShow;
+  }
+
+  openGatewayAdd(gatewayPort) {
+    const modalRef = this.ngbModal.open(GatewaySensorListComponent, {
+      size: 'lg',
+      windowClass: 'gateway-modal',
+      backdrop: true,
+      keyboard: false,
+    });
+    modalRef.componentInstance.data = gatewayPort;
+    modalRef.result.then((result) => {
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
 }
