@@ -26,7 +26,7 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
   totalCount: number;
   p: any;
   term: string;
-  order: string = 'TimeElapsed';
+  order: string = 'DateTime';
   constructor(
     private sensorService: SensorService,
     private signalRService: SignalRService,
@@ -185,23 +185,29 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
     let timeDiff = endTime - startTime;
     // strip the miliseconds
     timeDiff /= 1000;
+    let seconds;
+    let minutes;
+    let hours;
     // get seconds
-    const seconds = Math.round(timeDiff % 60);
+    seconds = Math.round(timeDiff % 60);
     // remove seconds from the date
     timeDiff = Math.floor(timeDiff / 60);
     // get minutes
-    let minutes = Math.round(timeDiff % 60);
+    minutes = Math.round(timeDiff % 60);
     if (timeElasped && timeElasped > 0) {
       minutes = minutes + timeElasped;
     }
     // remove minutes from the date
     timeDiff = Math.floor(timeDiff / 60);
     // get hours
-    const hours = Math.round(timeDiff % 24);
+    hours = Math.round(timeDiff % 24);
     // remove hours from the date
     timeDiff = Math.floor(timeDiff / 24);
     // the rest of timeDiff is number of days
     const days = timeDiff;
+    hours = hours < 10 ? '0' + hours : hours; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
     console.log(days + ' days, ' + hours + ':' + minutes + ':' + seconds);
     return days + ' days, ' + hours + ':' + minutes + ':' + seconds;
   }

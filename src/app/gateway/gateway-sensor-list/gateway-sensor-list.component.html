@@ -14,7 +14,7 @@
             <div class="input-group sensor-search" data-toggle="collapse" href="#modal_drop" role="button"
                 aria-expanded="true" aria-controls="modal_drop">
                 <input type="search" class="form-control" placeholder="Enter Sensor Name or ID" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                    aria-describedby="basic-addon1"  [(ngModel)]="term" (keyup)="filter()" [ngModelOptions]="{standalone: true}">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                         <img src="assets/images/gateway/search.svg">

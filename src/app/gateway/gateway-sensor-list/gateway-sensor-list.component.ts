@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ConstantService } from '@app/shared/services';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GatewayAttachSensorListModel } from '../shared/gateway.model';
@@ -14,10 +15,13 @@ export class GatewaySensorListComponent implements OnInit {
   @Input() data;
   gatewayAttachSensorListModel: GatewayAttachSensorListModel[] = [];
   selectedSensorId: any;
+  newgatewayAttachSensorListModel: GatewayAttachSensorListModel[] = [];
+  term: any;
   constructor(
     private ngbActiveModal: NgbActiveModal,
     private gatewayService: GatewayService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private constantService: ConstantService,
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +39,7 @@ export class GatewaySensorListComponent implements OnInit {
     this.gatewayService.getAttachSensorsForPortGatewaySearch().subscribe(
       data => {
         this.gatewayAttachSensorListModel = data.Data;
+        this.newgatewayAttachSensorListModel =  this.constantService.detachObject(data.Data);
       },
       error => {
       });
@@ -56,6 +61,25 @@ export class GatewaySensorListComponent implements OnInit {
 
   selectedSensor(sensorId){
     this.selectedSensorId = sensorId;
+  }
+
+  filter() {
+    const values = this.newgatewayAttachSensorListModel;
+    if (this.term != null && this.term !== '') {
+      let filter = this.term;
+      const keyArray = ['SensorId', 'SensorName'];
+      if (!values || !values.length) { return []; }
+      if (!filter) { return values; }
+
+      filter = filter.toUpperCase();
+
+      if (filter && Array.isArray(values)) {
+        const keys = keyArray;
+        this.gatewayAttachSensorListModel = values.filter(v => v && keys.some(k => String(v[k]).toUpperCase().indexOf(filter) >= 0));
+      }
+    } else {
+      this.gatewayAttachSensorListModel = values;
+    }
   }
 
 }

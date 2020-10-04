@@ -19,8 +19,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cp" *ngFor="let alarm of alarmModel | orderBy: order : true  | paginate: {itemsPerPage: 5, currentPage: p, totalItems: totalCount}  " (click)="sensorDetail(alarm)">
-                        <td>
+                    <tr class="cp" *ngFor="let alarm of alarmModel | orderBy: order : true  | paginate: {itemsPerPage: 5, currentPage: p, totalItems: totalCount}" >
+                        <td (click)="sensorDetail(alarm)">
                             <div class="sensor-pic">
                                 <img src="assets/images/sensor-machine/mark-7.jpg">
                             </div>
@@ -30,12 +30,12 @@
                                 <span>{{alarm.MachineName}}</span>
                             </div>
                         </td>
-                        <td>{{ calculateTimeElasped(alarm.DateTime,alarm.TimeElapsed) }}</td>
-                        <td>{{alarm.SensorTypeName}}</td>
-                        <td> {{alarm.LiveValue}}˚C</td>
-                        <td>{{alarm.DayMin}}˚C</td>
-                        <td>{{alarm.DayMax}}˚C</td>
-                        <td>
+                        <td (click)="sensorDetail(alarm)" class="alarm-time">{{ calculateTimeElasped(alarm.DateTime,alarm.TimeElapsed) }}</td>
+                        <td (click)="sensorDetail(alarm)">{{alarm.SensorTypeName}}</td>
+                        <td (click)="sensorDetail(alarm)"> {{alarm.LiveValue}}˚C</td>
+                        <td (click)="sensorDetail(alarm)">{{alarm.DayMin}}˚C</td>
+                        <td (click)="sensorDetail(alarm)">{{alarm.DayMax}}˚C</td>
+                        <td (click)="sensorDetail(alarm)">
                             <span
                                 [class]="alarm.SensorStatusName === sensorStatusEnum.critical? 'btn-critical-grid' : alarm.SensorStatusName === sensorStatusEnum.warning? 'btn-warning-grid' : 'btn-inprogress-grid'">{{alarm.SensorStatusName}}</span>
                         </td>

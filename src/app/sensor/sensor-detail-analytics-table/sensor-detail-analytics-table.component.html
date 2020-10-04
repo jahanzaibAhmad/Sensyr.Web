@@ -3,7 +3,6 @@
         <tr>
             <th>Voltage</th>
             <th>Value</th>
-            <th>Average</th>
             <th>STATUS</th>
             <th>Date</th>
             <th>Time</th>
@@ -13,7 +12,6 @@
         <tr  *ngFor="let alarm of alarmModel">
             <td>{{alarm.Voltage}}</td>
             <td>{{alarm.Value}}</td>
-            <td> {{alarm.AVG}}˚C</td>
             <td>
                 <span
                     [class]="alarm.SensorStatusName === sensorStatusEnum.critical? 'btn-critical-grid' : alarm.SensorStatusName === sensorStatusEnum.warning? 'btn-warning-grid' : 'btn-inprogress-grid'">{{alarm.SensorStatusName}}</span>

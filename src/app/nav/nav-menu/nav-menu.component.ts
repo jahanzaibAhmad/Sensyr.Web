@@ -11,6 +11,7 @@ export class NavMenuComponent implements OnInit {
   date: string;
   time: string;
   welcomeStatus: string;
+  toggleNavbar: boolean;
 
   constructor(
     private sharedService: SharedService,
@@ -26,6 +27,11 @@ export class NavMenuComponent implements OnInit {
       });
   }
 
-  save() {
+  mobileSidebar(){
+    this.toggleNavbar = !this.toggleNavbar;
+  }
+
+  sidebarClose() {
+    this.toggleNavbar = false;
   }
 }

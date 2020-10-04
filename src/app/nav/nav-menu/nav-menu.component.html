@@ -2,13 +2,18 @@
 
 
     <!-- Sidebar Starts -->
-    <div class="sidebar sidebar-dark sidebar-desktop">
-        <div class="logo">
+    <div [class]="toggleNavbar? 'sidebar sidebar-dark sidebar-mobile active' : 'sidebar sidebar-dark sidebar-desktop'">
+        <div class="logo" *ngIf="!toggleNavbar">
             <img src="assets/images/logo-white.svg">
         </div>
 
-        <ul class="sidebar-nav">
-            <li class="machine-icon" routerLinkActive="active">
+        <div class="logo" *ngIf="toggleNavbar" (click)="sidebarClose();">
+            <img src="assets/images/logo-white.svg">
+            <img src="assets/images/close-white.svg" class="close-icon">
+        </div>
+
+        <ul class="sidebar-nav" >
+            <li class="machine-icon" routerLinkActive="active" (click)="sidebarClose();">
                 <a [routerLink]="['/', 'app','machine']">
                     <img src="assets/images/sidebar/Assets/Inactive.svg" alt="icon" class="icon-light">
                     <img src="assets/images/sidebar/Assets/Active.svg" alt="icon" class="icon-white">
@@ -16,14 +21,14 @@
                     <span class="sidebar-title">Assets</span>
                 </a>
             </li>
-            <li class="sensor-icon" routerLinkActive="active">
+            <li class="sensor-icon" routerLinkActive="active" (click)="sidebarClose();">
                 <a class="accordion-toggle" [routerLink]="['/', 'app','sensor']">
                     <img src="assets/images/sidebar/Sensors/Inactive.svg" alt="icon" class="icon-light">
                     <img src="assets/images/sidebar/Sensors/Active.svg" alt="icon" class="icon-white">
                     <span>Sensors</span>
                 </a>
             </li>
-            <li class="sensor-icon" routerLinkActive="active">
+            <li class="sensor-icon" routerLinkActive="active" (click)="sidebarClose();">
                 <a class="accordion-toggle" [routerLink]="['/', 'app', 'gateway']">
                     <img src="assets/images/sidebar/Gateways/Inactive.svg" alt="icon" class="icon-light">
                     <img src="assets/images/sidebar/Gateways/Active.svg" alt="icon" class="icon-white">
@@ -58,7 +63,7 @@
     <!-- Header Starts -->
     <header class="header">
         <div class="menu-icon">
-            <img src="assets/images/menu.svg" class="img-fluid">
+            <img src="assets/images/menu.svg" class="img-fluid" (click)="mobileSidebar()">
         </div>
         <div class="header-left">
             <h4 class="header-title d-none d-md-block">{{welcomeStatus}}, Riley</h4>
