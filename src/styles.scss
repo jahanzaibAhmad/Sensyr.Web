@@ -49,6 +49,14 @@ text.highcharts-credits {
     }
 }
 
+.gateway-cards .gateway-dropdowns .drop-header {
+	padding: 20px 20px 20px;
+}
+
+.gateway-cards .gateway-dropdowns .gateway-dropdown-content{
+    margin-top: 0px;
+}
+
 @media (max-width: 1385px) {
     .alarm-left {
         width: 135px !important;

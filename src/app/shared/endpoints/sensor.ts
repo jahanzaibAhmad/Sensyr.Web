@@ -12,7 +12,7 @@ export class SensorEndPoints {
     public readonly getSensorDetailAnalyticsStatusEndPoint = 'GetSensorDetailAnalyticsStatus';
     public readonly getSensorDetailLastTransactionsEndPoint = 'GetSensorDetailLastTransactions';
     public readonly getAttachSensorsForPortGatewaySearchEndPoint = 'GetAttachSensorsForPortGatewaySearch';
-
+    public readonly getGatewayPortSensorDetailsEndPoint = 'GetGatewayPortSensorDetails';
 }
 
 export class DashboardEndPoints {

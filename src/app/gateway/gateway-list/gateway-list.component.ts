@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { GatewayListModel } from '@app/gateway/shared/gateway.model';
+import { ConstantService } from '@app/shared/services';
 import { ToastrService } from 'ngx-toastr';
 import { GatewayService } from '../shared/gateway.service';
 
@@ -12,10 +13,12 @@ export class GatewayListComponent implements OnInit {
   gatewayListModel: GatewayListModel[] = [];
   @Input() private searchClick: EventEmitter<any>;
   searchText: string;
+  sensorModel: any = [];
 
   constructor(
     private gatewayService: GatewayService,
     private toastrService: ToastrService,
+    private constantService: ConstantService
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +39,57 @@ export class GatewayListComponent implements OnInit {
     this.gatewayService.getGateways(searchText).subscribe(
       data => {
         this.gatewayListModel = data.Data;
-        console.log(data.Data[1])
+        // console.log(data.Data[1]);
       },
       error => {
       });
+  }
+
+  getGatewayPortSensorDetails(portID) {
+    this.gatewayService.getGatewayPortSensorDetails(portID).subscribe(
+      data => {
+        this.sensorModel['portID' + portID] = data.Data;
+        console.log(data);
+      },
+      error => {
+      });
+  }
+
+  disconnectGatewayPort(gatewayPort, gatewayPorts) {
+    this.gatewayService.disconnectGatewayPort(gatewayPort.GatewayPortID).subscribe(
+      data => {
+        const index = gatewayPorts.findIndex(x => x.GatewayPortID === gatewayPort.GatewayPortID);
+        if (index > -1) {
+          gatewayPorts[index].GatewayPortSensorId = null;
+        }
+        gatewayPort.show = false;
+        this.toastrService.success('Sensor Disconnected Successfully!');
+      },
+      error => {
+      });
+  }
+
+  openPanel(portID, gatewayPort, gatewayPorts) {
+    if (portID) {
+      const portShow = this.constantService.detachObject(!gatewayPort.show);
+      if (portShow && !(this.sensorModel['sensorId' + portID])) {
+        this.getGatewayPortSensorDetails(portID);
+      }
+      this.magagePorts(gatewayPort, gatewayPorts);
+
+    } else {
+      // alert('Pop');
+    }
+  }
+
+  magagePorts(gatewayPort: any, gatewayPorts: any) {
+    const portShow = this.constantService.detachObject(!gatewayPort.show);
+    gatewayPorts.forEach(element => {
+      if (element.show) {
+        element.show = false;
+      }
+    });
+    gatewayPort.show = portShow;
   }
 
 }

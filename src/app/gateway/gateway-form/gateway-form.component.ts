@@ -38,6 +38,7 @@ export class GatewayFormComponent implements OnInit {
       keyboard: false,
     });
     modalRef.result.then((result) => {
+      this.searchClick.emit(null);
     }).catch((error) => {
       console.log(error);
     });
