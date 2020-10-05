@@ -4,6 +4,7 @@ import { GatewayListModel } from '@app/gateway/shared/gateway.model';
 import { ConstantService } from '@app/shared/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GatewayAddComponent } from '../gateway-add/gateway-add.component';
 import { GatewaySensorListComponent } from '../gateway-sensor-list/gateway-sensor-list.component';
 import { GatewayService } from '../shared/gateway.service';
 
@@ -106,6 +107,21 @@ export class GatewayListComponent implements OnInit {
       keyboard: false,
     });
     modalRef.componentInstance.data = gatewayPort;
+    modalRef.result.then((result) => {
+      this.getGateways();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  openGatewayEdit(gateway) {
+    const modalRef = this.ngbModal.open(GatewayAddComponent, {
+      size: 'lg',
+      windowClass: 'gateway-modal',
+      backdrop: true,
+      keyboard: false,
+    });
+    modalRef.componentInstance.data = gateway;
     modalRef.result.then((result) => {
       this.getGateways();
     }).catch((error) => {

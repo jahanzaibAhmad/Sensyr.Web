@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GatewayService } from '@app/gateway/shared/gateway.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,8 +13,10 @@ import { ValidationService } from '@app/shared/validators';
 })
 export class GatewayAddComponent implements OnInit {
   gatewayForm: FormGroup;
+  @Input() data;
 
   variantModel: VariantModel[] = [];
+  isEdit: boolean;
   constructor(
     private ngbActiveModal: NgbActiveModal,
     private gatewayService: GatewayService,
@@ -24,6 +26,10 @@ export class GatewayAddComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if (this.data) {
+      this.isEdit = true;
+      this.getGatewayById();
+    }
     this.getVariants();
     this.bindForm();
   }
@@ -54,15 +60,41 @@ export class GatewayAddComponent implements OnInit {
       });
   }
 
-
-  save() {
-    this.gatewayService.addGateway(this.gatewayForm.value).subscribe(
+  getGatewayById() {
+    this.gatewayService.getGatewayById(this.data.GatewayID).subscribe(
       data => {
-        this.toastrService.success('Gateway saved successfully!');
-        this.close();
+        this.setValues( data.Data);
       },
       error => {
       });
+  }
+
+  private setValues(data) {
+    this.gatewayForm.get('gatewayID').patchValue(data.GatewayID);
+    this.gatewayForm.get('gatewayName').patchValue(data.GatewayName);
+    this.gatewayForm.get('gatewayID').disable();
+    this.gatewayForm.get('variantID').patchValue(data.VariantId);
+  }
+
+  save() {
+    if (this.isEdit) {
+      this.gatewayForm.value.gatewayID = this.data.GatewayID;
+      this.gatewayService.UpdateGateway(this.gatewayForm.value).subscribe(
+        data => {
+          this.toastrService.success('Gateway updated successfully!');
+          this.close();
+        },
+        error => {
+        });
+    } else {
+      this.gatewayService.addGateway(this.gatewayForm.value).subscribe(
+        data => {
+          this.toastrService.success('Gateway saved successfully!');
+          this.close();
+        },
+        error => {
+        });
+    }
   }
 
   close() {

@@ -51,6 +51,16 @@ export class GatewayService extends BaseService<any> {
       .pipe(map((data: any) => data));
   }
 
+  UpdateGateway(body): Observable<any> {
+    return this.post(body, this.apiService.gatewayApi + this.gatewayEndPoints.updateGatewayEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getGatewayById(gatewayId): Observable<any> {
+    return this.get(this.apiService.gatewayApi + this.gatewayEndPoints.getGatewayByIdEndPoint + '?Id=' + gatewayId)
+      .pipe(map((data: any) => data));
+  }
+
   // Sensor
   getAttachSensorsForPortGatewaySearch(): Observable<any> {
     return this.get(this.apiService.sensorApi + this.sensorEndPoints.getAttachSensorsForPortGatewaySearchEndPoint)

@@ -1,5 +1,8 @@
 <div class="modal-header">
-    <h5 class="modal-title">Add Gateway Info</h5>
+    <h5 class="modal-title">
+        <span *ngIf="!isEdit"> Add Gateway Info </span>
+        <span *ngIf="isEdit"> Update Gateway Info </span>
+        </h5>
     <button type="button" class="close" (click)="close()">
         <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
     </button>
@@ -61,5 +64,8 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-square-plain" (click)="close()">Cancel</button>
-    <button type="button" class="btn btn-square" (click)="save()"  [disabled]="gatewayForm.invalid">Add & Proceed</button>
+    <button type="button" class="btn btn-square" (click)="save()" [disabled]="gatewayForm.invalid">
+        <span *ngIf="!isEdit"> Add & Proceed</span>
+        <span *ngIf="isEdit"> Update & Proceed</span>
+    </button>
 </div>
