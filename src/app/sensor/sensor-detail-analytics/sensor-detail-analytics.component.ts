@@ -15,6 +15,7 @@ import { SensorStatusIdEnum } from '@app/shared/services';
 export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
 
   chart: am4charts.XYChart;
+  stackedCharts: am4charts.XYChart;
   categoryAxis: any;
   dateAxis: any;
   valueAxis: any;
@@ -41,6 +42,7 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     this.sensorId = +this.activatedRoute.snapshot.params.sensorId;
     this.getSensorDetailAnalyticsPerformance();
     this.getSensorDetailAnalyticsStatus();
+    // this.stackedChart();
     // this.getTestDetail();
 
   }
@@ -50,7 +52,7 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
       data => {
         // console.log(JSON.stringify(data.Data));
         this.lineGraph(data.Data);
-        // this.drawWithData(data.Data);
+        // this.barChart(data.Data);
       },
       error => {
       });
@@ -60,7 +62,8 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     this.sensorService.getSensorDetailAnalyticsStatus(this.sensorId).subscribe(
       data => {
         // console.log(JSON.stringify(data));
-        this.drawWithData(data.Data);
+        this.stackedChart(data.Data);
+    // this.barChart(data.Data);
       },
       error => {
       });
@@ -70,10 +73,11 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     this.sensorService.getTestDetail().subscribe(
       data => {
         // this.lineGraph(data);
-        this.drawWithData(data.Data);
+        this.barChart(data.Data);
       });
   }
 
+  // Line Chart
 
   lineGraph(values) {
     // Chart code goes in here
@@ -173,6 +177,101 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     });
   }
 
+ // Line Chart END
+
+ // Stacked Chart
+
+  stackedChart(values) {
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+    // Create chart instance
+    const chart = am4core.create('stackedchartdiv', am4charts.XYChart);
+    // Add data
+    const data = [];
+    for (let i = 0; i < values.length; i++) {
+      data.push({ date:  new Date(values[i].DateTime), critical: values[i].Critical + i, warning: values[i].Warning });
+    }
+    chart.data = data;
+
+    // Create axes
+    chart.mouseWheelBehavior = 'zoomXY';
+    const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.grid.template.location = 0;
+
+    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.inside = true;
+    valueAxis.renderer.labels.template.disabled = true;
+    valueAxis.min = 0;
+    this.stackedCharts = chart;
+    this.createStackedSeries('critical', 'Critical', '#E87A7A');
+    this.createStackedSeries('warning', 'Warning', '#FFBD2F');
+
+    // Legend
+    this.stackedCharts.legend = new am4charts.Legend();
+    // this.stackedChart = chart;
+  }
+
+
+  createStackedSeries(field, name, color) {
+
+    // Set up series
+    const series = this.stackedCharts.series.push(new am4charts.ColumnSeries());
+    series.name = name;
+    series.dataFields.valueY = field;
+    series.dataFields.dateX = "date";
+    series.sequencedInterpolation = true;
+
+    // Make it stacked
+    series.stacked = true;
+
+    series.columns.template.width = am4core.percent(70);
+
+    const scrollbarX = new am4charts.XYChartScrollbar();
+    scrollbarX.series.push(series);
+    this.stackedCharts.scrollbarX = scrollbarX;
+
+    // Configure columns
+    series.columns.template.width = am4core.percent(60);
+    series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+    const columnTemplate = series.columns.template;
+    columnTemplate.fillOpacity = .8;
+    columnTemplate.strokeOpacity = 0;
+    columnTemplate.fill = am4core.color(color);
+    // Add label
+    const labelBullet = series.bullets.push(new am4charts.LabelBullet());
+    labelBullet.label.text = "{valueY}";
+    labelBullet.locationY = 0.5;
+    labelBullet.label.hideOversized = true;
+
+    return series;
+  }
+ // Stacked Chart END
+
+
+ // Bar Chart
+  barChart(data) {
+    this.zone.runOutsideAngular(() => {
+      this.chart = am4core.create('barChart', am4charts.XYChart);
+      data.forEach(element => {
+        element.DateTime = new Date(element.DateTime);
+      });
+      this.chart.mouseWheelBehavior = 'zoomXY';
+      const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
+      dateAxis.renderer.grid.template.location = 0;
+      dateAxis.baseInterval = {
+        'timeUnit': 'hour',
+        'count': 24
+      };
+      this.valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
+      this.valueAxis.renderer.inside = true;
+      this.valueAxis.renderer.labels.template.disabled = true;
+      this.valueAxis.min = 0;
+      this.createSeries('Value', 'Value', '#FFBD2F');
+      this.chart.data = data;
+    });
+  }
 
 
   createSeries(field, name, color) {
@@ -182,7 +281,6 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     series.dataFields.dateX = 'DateTime';
     series.sequencedInterpolation = true;
     series.columns.template.fillOpacity = 0.5;
-    // series.columns.template.width = am4core.percent(70);
     series.stacked = true;
 
     series.columns.template.width = am4core.percent(70);
@@ -190,26 +288,8 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     const scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     this.chart.scrollbarX = scrollbarX;
-    // series.columns.template.tooltipText =
-    //   '[bold]{name}[/]\n[font-size:14px]{dateX.formatDate("dd-MM-yyyy hh:mm")}: {valueY}';
-
-    // series.heatRules.push({
-    //   'target': series.columns.template,
-    //   'property': 'fill',
-    //   'min': am4core.color(color),
-    //   'max': am4core.color(color),
-    //   'dataField': 'valueY'
-    // });
-    // series.heatRules.push({
-    //   'target': series.columns.template,
-    //   'property': 'stroke',
-    //   'min': am4core.color(color),
-    //   'max': am4core.color(color),
-    //   'dataField': 'valueY'
-    // });
 
     const columnTemplate = series.columns.template;
-    // columnTemplate.tooltipText = '{categoryX}: [bold]{valueY}[/]';
     columnTemplate.fillOpacity = .8;
     columnTemplate.strokeOpacity = 0;
     columnTemplate.fill = am4core.color('#5a5');
@@ -229,52 +309,7 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     return series;
   }
 
-  drawWithData(data) {
-    this.zone.runOutsideAngular(() => {
-      this.chart = am4core.create('chartdiv2', am4charts.XYChart);
-      data.forEach(element => {
-        element.DateTime = new Date(element.DateTime);
-      });
-      this.chart.mouseWheelBehavior = 'zoomXY';
-
- 
-
-      const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
-      dateAxis.renderer.grid.template.location = 0;
-      dateAxis.baseInterval = {
-        'timeUnit': 'hour',
-        'count': 24
-      };
-
-
-      this.valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
-      this.valueAxis.renderer.inside = true;
-      this.valueAxis.renderer.labels.template.disabled = true;
-      this.valueAxis.min = 0;
-
- 
-
-      this.createSeries('Value', 'Value', '#FFBD2F');
-      // this.createSeries('CriticalMax', 'Critical', '#E87A7A');
-      this.chart.data = data;
-    });
-  }
-
-  dateAxisChanged(ev,that) {
-    let start = new Date(ev.target.minZoomed);
-    let end = new Date(ev.target.maxZoomed);
-    // console.log("New range: " + start + " -- " + end);
-    // that.drawWithData('');
-    // if (ev.target['axisFullLength'] >= 5500 && fThis.statusAxisLength < 5500) {
-    //   fThis.statusAxisLength = 5500;
-    //   console.log(ev.target['axisFullLength']);
-    // }
-    // if (ev.target['axisFullLength'] <= 5500 && fThis.statusAxisLength === 0) {
-    //   fThis.statusAxisLength = 0;
-    //   console.log(ev.target['axisFullLength']);
-    // }
-  }
-
+  // Bar Chart END
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {

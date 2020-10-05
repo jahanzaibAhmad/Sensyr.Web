@@ -208,7 +208,6 @@ export class SensorAlarmTableComponent implements OnInit, AfterViewInit, OnDestr
     hours = hours < 10 ? '0' + hours : hours; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    console.log(days + ' days, ' + hours + ':' + minutes + ':' + seconds);
     return days + ' days, ' + hours + ':' + minutes + ':' + seconds;
   }
 
