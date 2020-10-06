@@ -69,7 +69,7 @@ export class GatewayListComponent implements OnInit {
           gatewayPorts[index].GatewayPortSensorId = null;
         }
         gatewayPort.show = false;
-        this.toastrService.success('Sensor Disconnected Successfully!');
+        this.toastrService.success('Sensor disconnected Successfully!');
       },
       error => {
       });
@@ -127,6 +127,19 @@ export class GatewayListComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  deleteGateway(gatewayId){
+    this.gatewayService.deleteGateway(gatewayId).subscribe(
+      data => {
+        const index = this.gatewayListModel.findIndex(x => x.GatewayID === gatewayId);
+        if (index > -1) {
+          this.gatewayListModel.splice(index, 1);
+        }
+        this.toastrService.success('Sensor deleted Successfully!');
+      },
+      error => {
+      });
   }
 
 }

@@ -47,17 +47,22 @@ export class GatewayService extends BaseService<any> {
   }
 
   disconnectGatewayPort(gatewayPortID): Observable<any> {
-    return this.get(this.apiService.gatewayApi + this.gatewayEndPoints.disconnectGatewayPortEndPoint + '?GatewayPortID=' + gatewayPortID)
+    return this.put('', '', this.apiService.gatewayApi + this.gatewayEndPoints.disconnectGatewayPortEndPoint + '?GatewayPortID=' + gatewayPortID)
       .pipe(map((data: any) => data));
   }
 
   UpdateGateway(body): Observable<any> {
-    return this.post(body, this.apiService.gatewayApi + this.gatewayEndPoints.updateGatewayEndPoint)
+    return this.put(body, this.apiService.gatewayApi + this.gatewayEndPoints.updateGatewayEndPoint)
       .pipe(map((data: any) => data));
   }
 
   getGatewayById(gatewayId): Observable<any> {
     return this.get(this.apiService.gatewayApi + this.gatewayEndPoints.getGatewayByIdEndPoint + '?Id=' + gatewayId)
+      .pipe(map((data: any) => data));
+  }
+
+  deleteGateway(gatewayId): Observable<any> {
+    return this.delete(0, this.apiService.gatewayApi + this.gatewayEndPoints.deleteGatewayEndPoint + '?Id=' + gatewayId)
       .pipe(map((data: any) => data));
   }
 

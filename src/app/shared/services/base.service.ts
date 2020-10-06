@@ -18,7 +18,11 @@ export class BaseService<T> {
   }
 
   public put(item: T, id: any, endpoint: string = ''): Observable<T> {
-    if (endpoint !== '' && endpoint != null) {
+    if (id === '' || id == null) {
+      return this.httpClient
+        .put<T>(`${this.url}/${endpoint}`, item)
+        .pipe(map((data: any) => data as T));
+    } else if (endpoint !== '' && endpoint != null) {
       return this.httpClient
         .put<T>(`${this.url}/${endpoint}/${id}`, item)
         .pipe(map((data: any) => data as T));

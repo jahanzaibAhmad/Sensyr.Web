@@ -5,5 +5,6 @@ export class GatewayEndPoints {
     public readonly disconnectGatewayPortEndPoint = 'DisconnectGatewayPort';
     public readonly updateGatewayEndPoint = 'UpdateGateway';
     public readonly getGatewayByIdEndPoint = 'GetGatewayById';
+    public readonly deleteGatewayEndPoint = 'DeleteGateway';
 }
 
