@@ -82,4 +82,9 @@ export class GatewaySensorListComponent implements OnInit {
     }
   }
 
+  clearFilter(){
+    this.term = '';
+    this.gatewayAttachSensorListModel = this.newgatewayAttachSensorListModel;
+  }
+
 }

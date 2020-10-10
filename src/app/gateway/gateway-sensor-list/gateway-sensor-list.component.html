@@ -1,6 +1,6 @@
     <div class="modal-header">
     <h5 class="modal-title">
-        <span>Port 2</span>
+        <span> {{data.PortName}}</span>
         Attach a Sensor
     </h5>
     <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close">
@@ -13,9 +13,12 @@
             <label>Search Sensor</label>
             <div class="input-group sensor-search" data-toggle="collapse" href="#modal_drop" role="button"
                 aria-expanded="true" aria-controls="modal_drop">
-                <input type="search" class="form-control" placeholder="Enter Sensor Name or ID" aria-label="Username"
+                <input type="text" class="form-control" placeholder="Enter Sensor Name or ID" aria-label="Username"
                     aria-describedby="basic-addon1"  [(ngModel)]="term" (keyup)="filter()" [ngModelOptions]="{standalone: true}">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend" >
+                    <span class="input-group-text" id="" (click)="clearFilter()" *ngIf="term">
+                        <img src="assets/images/gateway/cross.png">
+                    </span>
                     <span class="input-group-text" id="basic-addon1">
                         <img src="assets/images/gateway/search.svg">
                     </span>
