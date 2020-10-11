@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@app/auth/shared/auth.service';
 import { AuthenticationService } from '@app/core/services/authentication.service';
 import { SharedService } from '@app/shared/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 import { interval } from 'rxjs';
 
 @Component({
@@ -16,7 +19,10 @@ export class NavMenuComponent implements OnInit {
   userFullName: string;
   constructor(
     private sharedService: SharedService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private authService: AuthService,
+    private toastrService: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,5 +42,16 @@ export class NavMenuComponent implements OnInit {
 
   sidebarClose() {
     this.toggleNavbar = false;
+  }
+
+  logout(){
+    this.authService.logout().subscribe(
+      data => {
+        this.router.navigate(['auth', 'login']);
+        this.authenticationService.clearStorage();
+      },
+      error => {
+        this.toastrService.error(error.error.errors.Email[0]);
+      });
   }
 }

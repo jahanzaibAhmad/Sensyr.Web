@@ -72,8 +72,18 @@
         <div class="header-right">
             <ul>
                 <li class="notification-icon"><img src="assets/images/notification.svg" alt="icon"></li>
-                <li><img src="assets/images/user-profile.svg" alt="icon"></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="image-dd" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/user-profile.svg" alt="icon">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item cp" (click)="logout()">Logout</a>
+                        </div>
+                      </div>
+                </li>
             </ul>
+            
         </div>
     </header>
     <!-- Header Ends -->

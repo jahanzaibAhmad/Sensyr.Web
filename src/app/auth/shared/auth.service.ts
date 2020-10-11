@@ -33,5 +33,9 @@ export class AuthService extends BaseService<any> {
     return this.http.post(environment.api_uri + '/' + this.apiService.authApi + this.authEndPoints.postRegisterEndPoint, body);
   }
 
+  logout(): Observable<any> {
+    return this.get(this.apiService.authApi + this.authEndPoints.postLogoutEndPoint);
+  }
+
 
 }

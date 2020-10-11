@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  
   token: string;
   constructor(
     private router: Router
@@ -37,6 +38,10 @@ export class AuthenticationService {
       fullName = user.FirstName + ' ' + user.LastName;
     }
     return fullName;
+  }
+
+  clearStorage() {
+    localStorage.clear();
   }
 
 }
