@@ -190,7 +190,7 @@ export class SensorDetailAnalyticsComponent implements OnInit, OnDestroy {
     // Add data
     const data = [];
     for (let i = 0; i < values.length; i++) {
-      data.push({ date:  new Date(values[i].DateTime), critical: values[i].Critical + i, warning: values[i].Warning });
+      data.push({ date: new Date(values[i].DateTime), critical: values[i].Critical, warning: values[i].Warning });
     }
     chart.data = data;
 

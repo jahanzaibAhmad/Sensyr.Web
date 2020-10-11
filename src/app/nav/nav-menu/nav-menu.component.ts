@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '@app/core/services/authentication.service';
 import { SharedService } from '@app/shared/services/shared.service';
 import { interval } from 'rxjs';
 
@@ -12,12 +13,14 @@ export class NavMenuComponent implements OnInit {
   time: string;
   welcomeStatus: string;
   toggleNavbar: boolean;
-
+  userFullName: string;
   constructor(
     private sharedService: SharedService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
+    this.userFullName = this.authenticationService.userFullName;
     const source = interval(1000);
     const subscribe = source.subscribe(
       val => {

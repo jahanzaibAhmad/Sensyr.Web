@@ -49,6 +49,7 @@ export class SigninComponent implements OnInit {
         } else {
           const token = 'Bearer ' + data.Data.Token;
           this.authenticationService.set('token', token);
+          this.authenticationService.set('user', JSON.stringify(data.Data));
           this.router.navigate(['app', 'sensor']);
         }
       },

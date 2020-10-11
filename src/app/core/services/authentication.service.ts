@@ -9,7 +9,6 @@ export class AuthenticationService {
   constructor(
     private router: Router
   ) {
-    // this.token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlMuQVJTSEFENjIzQEdNQUlMLkNPTSIsInVuaXF1ZV9uYW1lIjoiUy5BUlNIQUQ2MjNAR01BSUwuQ09NIiwiVXNlcklkIjoiMWYxMmM4MzUtZjE0OS00YTA5LWFiZmItNDE0YzA3MjYyZTYwIiwiQnJhbmNoSWQiOiIxIiwicm9sZSI6IlVzZXIiLCJuYmYiOjE1OTc4NjY3OTQsImV4cCI6MTU5Nzg3MDM5NCwiaWF0IjoxNTk3ODY2Nzk0fQ.r1l5Gp1RRNDi0Htta3XB7Ewyul0HYFwjmpPLaTNEfpw';
   }
 
   set(key: string, value: string) {
@@ -28,4 +27,16 @@ export class AuthenticationService {
     this.router.navigate(['auth', 'login']);
 
   }
+
+  get userFullName() {
+    let fullName = '';
+    let user;
+    user = localStorage.getItem('user');
+    if (user) {
+      user = JSON.parse(user);
+      fullName = user.FirstName + ' ' + user.LastName;
+    }
+    return fullName;
+  }
+
 }
