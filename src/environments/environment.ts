@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  // uri: 'http://localhost:53779/',
-  // api_uri: 'http://localhost:53779/' + 'api',
-  uri : 'http://198.12.229.152/',
-  api_uri: 'http://198.12.229.152/' + 'api',
+  uri: 'http://localhost:53779/',
+  api_uri: 'http://localhost:53779/' + 'api',
+  // uri : 'http://198.12.229.152/',
+  // api_uri: 'http://198.12.229.152/' + 'api',
 };
 
 /*

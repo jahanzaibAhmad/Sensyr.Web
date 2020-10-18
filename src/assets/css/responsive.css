@@ -186,13 +186,122 @@
 		font-size: 24px;
 	}
 
+	/*Add Sensors Page Starts*/
+	.days-list .btn-add-sensor{
+	    min-width: 1px;
+	    width: calc(52% - 20px);
+	    margin-bottom: 16px;
+	}
+	.days-list .btn-add-sensor:nth-child(even) {
+	    margin-right: 0;
+	}
+	.add-sensor-form .form-group {
+	    padding: 12px 0px;
+	}
+	.add-sensor-form .from-to-group{
+		display: block;
+	}
+	.btn-from-to{
+		display: inline-block;
+	}
+	.add-sensor-form .form-group.from-to p{
+		font-size: 14px;
+		margin-left: 0;
+		margin-bottom: 8px;
+	}
+	.add-sensor-form .form-group.from-to label{
+		margin: 10px 0;
+		display: inline-block;
+		margin-right: 14px;
+	}
+	.form-footer {
+	    margin-left: 0;
+	    margin-right: 0;
+	    box-sizing: border-box;
+	    width: 100%;
+	    left: 0;
+	    right: auto;
+	    padding: 10px 0;
+	}
+	.form-footer .btn-square, .form-footer .btn-square-border{
+	    padding: 0 16px;
+	    min-width: 1px;
+	}
+	.form-footer .btn-back{
+		padding: 0;
+	    line-height: 40px;
+	}
+	.add-sensor-form .form-group.from-to{
+		display: block;
+		float: none;
+	}
+	.add-sensor-form .from-to-text{
+		margin: 0px 4px;
+	}
+	.add-sensor-form .value-bar .value-tab:before{
+		border-left: 1px dashed #B1B1C7;
+	    height: 100%;
+	    width: auto;
+	    border-top: 0;
+	}
+	.add-sensor-form .value-bar .value-tab:first-child .form-group {
+	    padding-left: 20px;
+	}
+	.add-sensor-form .value-bar .value-tab .form-group {
+	    margin-bottom: 0px;
+	    padding: 0px 0px 20px 20px;
+	}
+	.add-sensor-form .value-bar .value-tab label:before{
+		left: -5px !important;
+		top: 4px !important;
+	}
+	.counter-box .counter-status{
+		height: auto;
+	    line-height: 1.5;
+	    margin-left: 0;
+	    padding: 12px;
+	    text-align: center;
+	    margin-top: 16px;
+	}
+	.add-sensor-form .tier-btns .btn-add-sensor {
+	    width: 100%;
+	    margin-bottom: 12px;
+	}
+	.add-sensor-form .btn-add-sensor.btn-sensor-yes, .add-sensor-form .btn-add-sensor.btn-sensor-no, .add-sensor-form .btn-add-sensor.btn-digital, .add-sensor-form .btn-add-sensor.btn-analog{
+		width: calc(52% - 20px);
+	    min-width: 1px;
+	}
+	.custom-popover-box{
+		width: 100%;
+		top: 100%;
+		right: 0;
+		z-index: 9;
+	}
+	.custom-popover-box:before{
+		display: none;
+	}
 
 
 
 
-
-
-
+	/*Assets Page Starts*/
+	.gateway-cards .gateway-head .asset-img {
+		margin-bottom: 20px;
+	}
+	.asset-card .asset-status-box .gateway-status {
+		margin: 15px 0px 0px;
+	}
+	.asset-card .asset-status-box .gateway-status li:last-child {
+		width: 40px;
+	}
+	.asset-card .assign-tech-btn {
+		text-align: left;
+		margin: 20px 0px 0px;
+	}
+	.filter-sidebar {
+		width: 300px;
+	}
+	/*Assets Page Ends*/
 
 
 

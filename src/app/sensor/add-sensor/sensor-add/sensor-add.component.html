@@ -1,0 +1,47 @@
+
+<!-- Add Sensor Starts -->
+<section class="theme-card add-sensor">
+
+    <div class="card-header d-block no-border">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="card-title purple">
+                    <a href="#" class="back">
+                        <img src="assets/images/sensor/back-arrow.svg">
+                    </a>
+                    <b>Add a Sensor</b>
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="sensor-step-wizard">
+                    <li  [class]="stepTwo? 'green' :  'active'" >
+                        <span class="cp" id="nav-step-1-tab" data-toggle="tab" href="#nav-step-1" role="tab"
+                            aria-controls="nav-step-1" aria-selected="true">Step 1: Basic Details</span>
+                    </li>
+                    <li  [class]="!stepTwo? 'isDisabled-cursor' : stepThree? 'green' : '' ">
+                        <span [class]="stepTwo? 'cp' :  'isDisabled'" id="nav-step-2-tab" data-toggle="tab" href="#nav-step-2" role="tab"
+                            aria-controls="nav-step-2" aria-selected="true">Step 2: Configurations</span>
+                    </li>
+                    <li [class]="stepThree? '' :  'isDisabled-cursor'">
+                        <span [class]="stepThree? 'cp' :  'isDisabled'" id="nav-step-3-tab" data-toggle="tab" href="#nav-step-3" role="tab"
+                        aria-controls="nav-step-3" aria-selected="true">Step 3: Settings</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body pl-0 pr-0 pt-0 show active" id="nav-step-1" role="tabpanel" aria-labelledby="nav-step-1-tab">
+        <app-sensor-add-one [sensorForm]="sensorForm"></app-sensor-add-one>
+    </div>
+
+    <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-2" role="tabpanel" aria-labelledby="nav-step-2-tab">
+        <app-sensor-add-two></app-sensor-add-two>
+    </div>
+
+    <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-3" role="tabpanel" aria-labelledby="nav-step-3-tab">
+        <app-sensor-add-three></app-sensor-add-three>
+    </div>
+
+</section>

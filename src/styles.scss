@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-    //
-    .o-theme{
-        @import "assets/styles/theme.scss";
-    }
+//
+.o-theme {
+    @import "assets/styles/theme.scss";
+}
 //
 
-.cp{
+.cp {
     cursor: pointer;
 }
 .table-main {
@@ -50,14 +50,14 @@ text.highcharts-credits {
 }
 
 .gateway-cards .gateway-dropdowns .drop-header {
-	padding: 20px 20px 20px;
+    padding: 20px 20px 20px;
 }
 
-.gateway-cards .gateway-dropdowns .gateway-dropdown-content{
+.gateway-cards .gateway-dropdowns .gateway-dropdown-content {
     margin-top: 0px;
 }
 
-.sensorlist-box{
+.sensorlist-box {
     max-height: 250px;
     overflow-y: scroll;
 }
@@ -68,6 +68,35 @@ text.highcharts-credits {
 
 .dropdown-menu {
     left: -70px !important;
+}
+
+.show {
+    display: none;
+}
+
+.show.active {
+    display: block;
+}
+
+.isDisabled {
+    pointer-events: none;
+}
+
+.isDisabled-cursor {
+    cursor: no-drop !important;
+}
+
+
+
+.sensor-step-wizard li.green {
+    border-color: #32CF75;
+    color: #32CF75;
+}
+
+input.form-control:disabled {
+    background: #F5F6FA;
+    line-height: 25px;
+    cursor: not-allowed;
 }
 
 @media (max-width: 1385px) {

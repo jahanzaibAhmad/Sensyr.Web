@@ -1,0 +1,252 @@
+<!-- Add Sensor Starts -->
+<div id="sensor-step-one">
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="custom-form add-sensor-form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Is this a Sensyrtech™ provided sensor?</label>
+                            <button class="btn btn-add-sensor btn-sensor-yes" (click)="checkTemplate(true)"
+                                [class.active]="isTemplate === true">
+                                <img src="assets/images/sensor/tick.svg">Yes</button>
+                            <button class="btn btn-add-sensor btn-sensor-no" (click)="checkTemplate(false)"
+                                [class.active]="isTemplate === false">
+                                <img src="assets/images/sensor/tick.svg">No</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  Sensor Data Starts -->
+                <div class="no-sensor-data d-none" [class.d-block]="isTemplate === true || isTemplate === false">
+                    <div class="row" *ngIf="isTemplate === true">
+                        <div class="col-md-4">
+                            <div class="form-group add-sensor-type">
+                                <label>Select Sensor Template</label>
+                                <div class="add-sensor-drop input-group sensor-search">
+                                    <input type="search" class="form-control" placeholder="Select a Sensor Template" aria-label="Username" aria-describedby="basic-addon1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><img src="assets/images/gateway/search.svg" class="drop-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group add-sensor-type">
+                                <label>Select Sensor Type</label>
+                                <div class="add-sensor-drop input-group sensor-search">
+                                    <input type="search" class="form-control" placeholder="Select a group"
+                                        aria-label="Username" aria-describedby="basic-addon1" [disabled]="isTemplate">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><img
+                                                src="assets/images/gateway/search.svg" class="drop-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Unit</label>
+                                <select class="form-control" >
+                                    <option>PSI</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row analog-div">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Select Sensor Data Type</label>
+                                <button class="btn btn-add-sensor btn-digital" [disabled]="isTemplate"><img
+                                        src="assets/images/sensor/tick.svg">Digital</button>
+                                <button class="btn btn-add-sensor btn-analog" [disabled]="isTemplate"><img
+                                        src="assets/images/sensor/tick.svg">Analog</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 equation-div">
+                            <div class="form-group">
+                                <label>
+                                    Custom Equation
+                                    <a href="#" class="small text-right">How this works?</a>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Enter your equation" name="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor ID</label>
+                                <div class="form-control disabled-field">#SENS8990300930</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Name</label>
+                                <input type="text" class="form-control" placeholder="Enter sensor name" name=""
+                                [disabled]="isTemplate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Photo (Optional)</label>
+                                <div class="form-upload small-upload">
+                                    <div class="form-upload-group">
+                                        <img src="assets/images/sensor/upload.svg" alt="image">
+                                        <h5 class="upload-title">Drag and Drop Files to upload</h5>
+                                        <h5 class="upload-type">Or click here to select files</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Description (Optional)</label>
+                                <textarea placeholder="Enter sensor description" class="form-control"
+                                    rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--  Sensor Data Ends -->
+
+                
+                <!-- No Sensor Data Starts -->
+                <div class="no-sensor-data d-none">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group add-sensor-type">
+                                <label>Select Sensor Type</label>
+                                <div class="add-sensor-drop input-group sensor-search">
+                                    <input type="search" class="form-control" placeholder="Select a group"
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><img
+                                                src="assets/images/gateway/search.svg" class="drop-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Unit</label>
+                                <select class="form-control">
+                                    <option>PSI</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row analog-div">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Select Sensor Data Type</label>
+                                <button class="btn btn-add-sensor btn-digital"><img
+                                        src="assets/images/sensor/tick.svg">Digital</button>
+                                <button class="btn btn-add-sensor btn-analog"><img
+                                        src="assets/images/sensor/tick.svg">Analog</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 equation-div">
+                            <div class="form-group">
+                                <label>
+                                    Custom Equation
+                                    <a href="#" class="small text-right">How this works?</a>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Enter your equation" name="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor ID</label>
+                                <div class="form-control disabled-field">#SENS8990300930</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Name</label>
+                                <input type="text" class="form-control" placeholder="Enter sensor name" name="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Photo (Optional)</label>
+                                <div class="form-upload small-upload">
+                                    <div class="form-upload-group">
+                                        <img src="assets/images/sensor/upload.svg" alt="image">
+                                        <h5 class="upload-title">Drag and Drop Files to upload</h5>
+                                        <h5 class="upload-type">Or click here to select files</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Sensor Description (Optional)</label>
+                                <textarea placeholder="Enter sensor description" class="form-control"
+                                    rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- No Sensor Data Ends -->
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Sensor Type Modal -->
+    <div class="modal fade gateway-modal asset-modal" id="add_sensor_type" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Sensor Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="custom-form">
+                        <div class="form-group">
+                            <label>Sensor Type</label>
+                            <input type="text" placeholder="Enter sensor type name" class="form-control" name="">
+                        </div>
+                        <div class="form-group">
+                            <label>Unit</label>
+                            <input type="text" class="form-control" placeholder="Enter sensor type unit" name="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-square-plain" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-square">Add Sensor Type</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row form-footer text-right">
+    <div class="col-lg-12">
+        <button class="btn btn-square-plain">Cancel</button>
+        <button class="btn btn-square cp" (click)="save()">Save & Next</button>
+        <!-- btn-disabled -->
+    </div>
+</div>
+<!-- Add Sensor Ends -->

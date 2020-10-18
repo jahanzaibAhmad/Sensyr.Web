@@ -17,6 +17,10 @@ import { SensorAlarmDetailComponent } from './sensor-alarm-detail/sensor-alarm-d
 import { SensorDetailAnalyticsTableComponent } from './sensor-detail-analytics-table/sensor-detail-analytics-table.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { DateAgoPipe } from '@app/shared/pipes';
+import { SensorAddComponent } from './add-sensor/sensor-add/sensor-add.component';
+import { SensorAddOneComponent } from './add-sensor/sensor-add-one/sensor-add-one.component';
+import { SensorAddTwoComponent } from './add-sensor/sensor-add-two/sensor-add-two.component';
+import { SensorAddThreeComponent } from './add-sensor/sensor-add-three/sensor-add-three.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { DateAgoPipe } from '@app/shared/pipes';
     SensorDetailAnalyticsComponent,
     SensorAlarmDetailComponent,
     SensorDetailAnalyticsTableComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    SensorAddComponent,
+    SensorAddOneComponent,
+    SensorAddTwoComponent,
+    SensorAddThreeComponent
   ],
   imports: [
     CommonModule,

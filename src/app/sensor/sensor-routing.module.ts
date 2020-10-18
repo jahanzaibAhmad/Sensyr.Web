@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SensorFormComponent } from '@app/sensor/sensor-form/sensor-form.component';
 import { SensorDetailFormComponent } from '@app/sensor/sensor-detail-form/sensor-detail-form.component';
+import { SensorAddComponent } from './add-sensor/sensor-add/sensor-add.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,31 @@ const routes: Routes = [
       breadcrumbName : true
     },
   },
+  {
+    path: 'add',
+    component: SensorAddComponent,
+    data: {
+      breadcrumb: 'Sensors Add',
+      breadcrumbName : true
+    },
+  },
+  {
+    path: 'add/:stepTwo',
+    component: SensorAddComponent,
+    data: {
+      breadcrumb: 'Sensors Add',
+      breadcrumbName : true
+    },
+  },
+  {
+    path: 'add/:stepTwo/:stepThree',
+    component: SensorAddComponent,
+    data: {
+      breadcrumb: 'Sensors Add',
+      breadcrumbName : true
+    },
+  },
+
 ];
 
 @NgModule({
