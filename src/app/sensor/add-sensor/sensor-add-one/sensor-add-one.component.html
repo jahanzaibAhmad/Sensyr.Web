@@ -1,8 +1,9 @@
 <!-- Add Sensor Starts -->
 <div id="sensor-step-one">
+<form  [formGroup]="sensorForm" novalidate>
     <div class="row">
         <div class="col-lg-12">
-            <form class="custom-form add-sensor-form">
+            <div class="custom-form add-sensor-form">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -24,12 +25,18 @@
                         <div class="col-md-4">
                             <div class="form-group add-sensor-type">
                                 <label>Select Sensor Template</label>
-                                <div class="add-sensor-drop input-group sensor-search">
+                                <ng-select class="search-icon"  #agreeSelect labelForId="yesno" formControlName="SensorTemplateId" 
+                                (change)="checkSensorTemplate($event)">
+                                    <ng-option *ngFor="let sensorTemplate of sensorTemplates" [value]="sensorTemplate.SensorTemplateId">
+                                        {{sensorTemplate.SensorTemplateName}}
+                                    </ng-option>
+                                </ng-select>
+                                <!-- <div class="add-sensor-drop input-group sensor-search">
                                     <input type="search" class="form-control" placeholder="Select a Sensor Template" aria-label="Username" aria-describedby="basic-addon1">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><img src="assets/images/gateway/search.svg" class="drop-icon"></span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -37,111 +44,41 @@
                         <div class="col-md-4">
                             <div class="form-group add-sensor-type">
                                 <label>Select Sensor Type</label>
-                                <div class="add-sensor-drop input-group sensor-search">
-                                    <input type="search" class="form-control" placeholder="Select a group"
+                                <ng-select class="search-icon"   labelForId="yesno" formControlName="SensorTypeId" 
+                                (change)="checkSensorType($event)"   >
+                                    <ng-option *ngFor="let sensorType of sensorTypes" [value]="sensorType.SensorTypeId">
+                                        {{sensorType.SensorTypeName}}
+                                    </ng-option>
+                                </ng-select>
+                                <!-- <div class="add-sensor-drop input-group sensor-search">
+                                    <input type="search" class="form-control" placeholder="Select a sensor type"
                                         aria-label="Username" aria-describedby="basic-addon1" [disabled]="isTemplate">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><img
                                                 src="assets/images/gateway/search.svg" class="drop-icon"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <select class="form-control" >
-                                    <option>PSI</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row analog-div">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Select Sensor Data Type</label>
-                                <button class="btn btn-add-sensor btn-digital" [disabled]="isTemplate"><img
-                                        src="assets/images/sensor/tick.svg">Digital</button>
-                                <button class="btn btn-add-sensor btn-analog" [disabled]="isTemplate"><img
-                                        src="assets/images/sensor/tick.svg">Analog</button>
-                            </div>
-                        </div>
-                        <div class="col-md-4 equation-div">
-                            <div class="form-group">
-                                <label>
-                                    Custom Equation
-                                    <a href="#" class="small text-right">How this works?</a>
-                                </label>
-                                <input type="text" class="form-control" placeholder="Enter your equation" name="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sensor ID</label>
-                                <div class="form-control disabled-field">#SENS8990300930</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sensor Name</label>
-                                <input type="text" class="form-control" placeholder="Enter sensor name" name=""
-                                [disabled]="isTemplate">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sensor Photo (Optional)</label>
-                                <div class="form-upload small-upload">
-                                    <div class="form-upload-group">
-                                        <img src="assets/images/sensor/upload.svg" alt="image">
-                                        <h5 class="upload-title">Drag and Drop Files to upload</h5>
-                                        <h5 class="upload-type">Or click here to select files</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Sensor Description (Optional)</label>
-                                <textarea placeholder="Enter sensor description" class="form-control"
-                                    rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!--  Sensor Data Ends -->
-
-                
-                <!-- No Sensor Data Starts -->
-                <div class="no-sensor-data d-none">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group add-sensor-type">
-                                <label>Select Sensor Type</label>
-                                <div class="add-sensor-drop input-group sensor-search">
-                                    <input type="search" class="form-control" placeholder="Select a group"
-                                        aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><img
-                                                src="assets/images/gateway/search.svg" class="drop-icon"></span>
-                                    </div>
-                                </div>
+                                    </div> 
+                                </div>-->
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Unit</label>
                                 <select class="form-control">
-                                    <option>PSI</option>
+                                    <option *ngIf="units && units.length > 0" [ngValue]="null">Choose Unit</option>
+                                    <option *ngFor="let unit of units" [ngValue]="unit.SensorTypeUnitId">
+                                        {{unit.UnitName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Comming Unit</label>
+                                <select class="form-control">
+                                    <option *ngIf="units && units.length > 0" [ngValue]="null">Choose Unit</option>
+                                    <option *ngFor="let unit of units" [ngValue]="unit.SensorTypeUnitId">
+                                        {{unit.UnitName}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -151,19 +88,26 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Select Sensor Data Type</label>
-                                <button class="btn btn-add-sensor btn-digital"><img
-                                        src="assets/images/sensor/tick.svg">Digital</button>
-                                <button class="btn btn-add-sensor btn-analog"><img
-                                        src="assets/images/sensor/tick.svg">Analog</button>
+                                <button class="btn btn-add-sensor btn-digital" [disabled]="isTemplate"
+                                    (click)="checkDataType(sensorDataTypeNameEnum.digital)"
+                                    [class.active]="dataType == sensorDataTypeNameEnum.digital">
+                                    <img src="assets/images/sensor/tick.svg">Digital</button>
+                                <button class="btn btn-add-sensor btn-analog" [disabled]="isTemplate"
+                                    (click)="checkDataType(sensorDataTypeNameEnum.analog)"
+                                    [class.active]="dataType == sensorDataTypeNameEnum.analog">
+                                    <img src="assets/images/sensor/tick.svg">Analog</button>
                             </div>
                         </div>
-                        <div class="col-md-4 equation-div">
+                        <div class="col-md-4 equation-div" *ngIf="dataType">
                             <div class="form-group">
                                 <label>
-                                    Custom Equation
-                                    <a href="#" class="small text-right">How this works?</a>
+                                    <span *ngIf="dataType == sensorDataTypeNameEnum.analog"> Custom Equation </span>
+                                    <span *ngIf="dataType == sensorDataTypeNameEnum.digital"> High Activation </span>
+                                    <a class="small text-right">How this works?</a>
                                 </label>
-                                <input type="text" class="form-control" placeholder="Enter your equation" name="">
+                    
+                                <input type="text" class="form-control" placeholder="Enter your equation" name=""
+                                    formControlName="CustomEquation">
                             </div>
                         </div>
                     </div>
@@ -173,7 +117,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Sensor ID</label>
-                                <div class="form-control disabled-field">#SENS8990300930</div>
+                                    <input type="text" class="form-control" placeholder="Enter sensor id" formControlName="SensorId"
+                                    disabled> 
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -206,10 +151,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- No Sensor Data Ends -->
-            </form>
+                
+                <!--  Sensor Data Ends -->
+                
+            </div>
         </div>
     </div>
+
+</form>
 
     <!-- Add Sensor Type Modal -->
     <div class="modal fade gateway-modal asset-modal" id="add_sensor_type" tabindex="-1" aria-hidden="true">

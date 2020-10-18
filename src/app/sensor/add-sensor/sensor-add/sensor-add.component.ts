@@ -45,9 +45,12 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
   private bindForm() {
     this.sensorForm = this.formBuilder.group({
       sensorTemplate: [null],
-      sensorTemplateId: [null, Validators.compose([
+      SensorTemplateId: [null, Validators.compose([
         Validators.required,
       ])],
+      SensorId: [null],
+      CustomEquation: [null],
+      SensorTypeId: [null],
     });
   }
 

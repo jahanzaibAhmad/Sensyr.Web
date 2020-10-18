@@ -7,6 +7,8 @@ import { BaseService } from '@app/shared/services/base.service';
 import { ApiService, SensorStatusIdEnum } from '@app/shared/services';
 import { SensorEndPoints, DashboardEndPoints } from '@app/shared/endpoints/sensor';
 import { ToastrService } from 'ngx-toastr';
+import { GatewayEndPoints } from '@app/shared/endpoints/gateway';
+import { AssetEndPoints } from '@app/shared/endpoints/asset';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +24,13 @@ export class SensorService extends BaseService<any> {
     private apiService: ApiService,
     private sensorEndPoints: SensorEndPoints,
     private dashboardEndPoints: DashboardEndPoints,
+    private gatewayEndPoints: GatewayEndPoints,
+    private assetEndPoints: AssetEndPoints,
     private http: HttpClient,
     private httpBackend: HttpBackend,
     private constantService: HttpBackend,
     private toastrService: ToastrService
-    ) {
+  ) {
     super(
       httpClient,
       environment.api_uri);
@@ -68,7 +72,7 @@ export class SensorService extends BaseService<any> {
 
   getSensorDetailLastTransactions(id) {
     return this.get(this.apiService.sensorApi + this.sensorEndPoints.getSensorDetailLastTransactionsEndPoint + '?id=' + id)
-    .pipe(map((data: any) => data));
+      .pipe(map((data: any) => data));
   }
 
 
@@ -110,6 +114,47 @@ export class SensorService extends BaseService<any> {
     this.http = new HttpClient(this.httpBackend);
     return this.http.get(this.urlTest);
   }
+
+
+  getNewSensorId() {
+    return this.get(this.apiService.sensorApi + this.sensorEndPoints.getNewSensorIdEndPoint, '',  'text');
+  }
+
+  getSensorTemplatesCombo() {
+    return this.get(this.apiService.sensorApi + this.sensorEndPoints.getSensorTemplatesComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getSensorTypesCombo() {
+    return this.get(this.apiService.sensorApi + this.sensorEndPoints.getSensorTypesComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getSensorTypeUnitsCombo(sensorTypeId) {
+    return this.get(this.apiService.sensorApi + this.sensorEndPoints.getSensorTypeUnitsComboEndPoint + '?sensorTypeId=' + sensorTypeId)
+      .pipe(map((data: any) => data));
+  }
+
+  getAssetsCombo() {
+    return this.get(this.apiService.sensorApi + this.assetEndPoints.getAssetsComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getAssetsGroupsCombo() {
+    return this.get(this.apiService.sensorApi + this.assetEndPoints.getAssetsGroupsComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getGatewayCombo() {
+    return this.get(this.apiService.sensorApi + this.gatewayEndPoints.getGatewayComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  getNotAssignedGatewayPortsCombo() {
+    return this.get(this.apiService.sensorApi + this.gatewayEndPoints.getNotAssignedGatewayPortsComboEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
 
   deleteSensor(id) {
     return this.delete(0, this.apiService.sensorApi + this.sensorEndPoints.deleteSensorsEndPoint + '?Ids=' + id)
@@ -190,7 +235,7 @@ export class SensorService extends BaseService<any> {
     }
   }
 
-  manageSensorCount(){
+  manageSensorCount() {
     this.alarmCountEvent.emit(true);
   }
 }

@@ -7,6 +7,7 @@ import { ModalModule } from '@app/shared/_modal/modal.module';
 import { ConfirmDialogModule } from '@app/shared/components/confirm-dialog/confirm-dialog.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoPipe} from '@app/shared/pipes';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoP
     ConfirmDialogModule,
     Ng2SearchPipeModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -35,7 +37,8 @@ import { columnPipe, rowPipe, searchPipe, ReversePipe, searchTabelPipe, DateAgoP
     Ng2SearchPipeModule,
     FormsModule,
     searchPipe,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ]
 })
 export class SharedModule {

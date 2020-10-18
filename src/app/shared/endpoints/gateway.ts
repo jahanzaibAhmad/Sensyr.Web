@@ -6,5 +6,7 @@ export class GatewayEndPoints {
     public readonly updateGatewayEndPoint = 'UpdateGateway';
     public readonly getGatewayByIdEndPoint = 'GetGatewayById';
     public readonly deleteGatewayEndPoint = 'DeleteGateway';
+    public readonly getGatewayComboEndPoint = 'GetGatewayCombo';
+    public readonly getNotAssignedGatewayPortsComboEndPoint = 'GetNotAssignedGatewayPortsCombo';
 }
 

@@ -35,8 +35,13 @@ export enum SensorStatusIdEnum {
 
 export enum SensorDataTypeNameEnum {
   digital = 'Digital',
-  analog = 'Analog'
+  analog = 'Analog',
+  modbus = 'Modbus'
 }
 
-
+export enum SensorDataTypeIDEnum {
+  digital = '1',
+  analog = '2',
+  modbus = '3',
+}
 

@@ -33,13 +33,18 @@ export class BaseService<T> {
     }
   }
 
-  get(id: any, endpoint: string = ''): Observable<T> {
-    if (endpoint) {
+  get(id: any, endpoint: string = '', resType?): Observable<T> {
+    if (resType) {
+      return this.httpClient
+        .get(`${this.url}/${id}`, { responseType: resType })
+        .pipe(map((data: any) => data as T));
+    }
+    else if (endpoint) {
       return this.httpClient
         .get(`${this.url}/${endpoint}/${id}`)
         .pipe(map((data: any) => data as T));
 
-    } else if (id)  {
+    } else if (id) {
       return this.httpClient
         .get(`${this.url}/${id}`)
         .pipe(map((data: any) => data as T));

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 //
+@import "~@ng-select/ng-select/themes/default.theme.css";
 .o-theme {
     @import "assets/styles/theme.scss";
 }
@@ -98,6 +99,24 @@ input.form-control:disabled {
     line-height: 25px;
     cursor: not-allowed;
 }
+
+ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
+    mask-image: url('assets/images/gateway/search.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-image: url('assets/images/gateway/search.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+
+    height: 21px;
+    top: 0px;
+    width: 24px;
+    display: block;
+    background: darkgrey;
+    right: 3px;
+
+  }
 
 @media (max-width: 1385px) {
     .alarm-left {

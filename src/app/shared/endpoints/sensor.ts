@@ -13,6 +13,10 @@ export class SensorEndPoints {
     public readonly getSensorDetailLastTransactionsEndPoint = 'GetSensorDetailLastTransactions';
     public readonly getAttachSensorsForPortGatewaySearchEndPoint = 'GetAttachSensorsForPortGatewaySearch';
     public readonly getGatewayPortSensorDetailsEndPoint = 'GetGatewayPortSensorDetails';
+    public readonly getNewSensorIdEndPoint = 'GetNewSensorId';
+    public readonly getSensorTemplatesComboEndPoint = 'GetSensorTemplatesCombo';
+    public readonly getSensorTypesComboEndPoint = 'GetSensorTypesCombo';
+    public readonly getSensorTypeUnitsComboEndPoint = 'GetSensorTypeUnitsCombo';
 }
 
 export class DashboardEndPoints {
