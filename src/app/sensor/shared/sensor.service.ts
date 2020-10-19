@@ -135,26 +135,31 @@ export class SensorService extends BaseService<any> {
       .pipe(map((data: any) => data));
   }
 
+  // Assets
   getAssetsCombo() {
-    return this.get(this.apiService.sensorApi + this.assetEndPoints.getAssetsComboEndPoint)
+    return this.get(this.apiService.assetApi + this.assetEndPoints.getAssetsComboEndPoint)
       .pipe(map((data: any) => data));
   }
 
   getAssetsGroupsCombo() {
-    return this.get(this.apiService.sensorApi + this.assetEndPoints.getAssetsGroupsComboEndPoint)
+    return this.get(this.apiService.assetApi + this.assetEndPoints.getAssetsGroupsComboEndPoint)
       .pipe(map((data: any) => data));
   }
 
+  // Assets
+
+  // Gateway
   getGatewayCombo() {
-    return this.get(this.apiService.sensorApi + this.gatewayEndPoints.getGatewayComboEndPoint)
+    return this.get(this.apiService.gatewayApi + this.gatewayEndPoints.getGatewayComboEndPoint)
       .pipe(map((data: any) => data));
   }
 
-  getNotAssignedGatewayPortsCombo() {
-    return this.get(this.apiService.sensorApi + this.gatewayEndPoints.getNotAssignedGatewayPortsComboEndPoint)
+  getNotAssignedGatewayPortsCombo(gatewayId) {
+    return this.get(this.apiService.gatewayApi + this.gatewayEndPoints.getNotAssignedGatewayPortsComboEndPoint + '?GatewayId=' + gatewayId)
       .pipe(map((data: any) => data));
   }
 
+  // Gateway
 
   deleteSensor(id) {
     return this.delete(0, this.apiService.sensorApi + this.sensorEndPoints.deleteSensorsEndPoint + '?Ids=' + id)
@@ -165,6 +170,18 @@ export class SensorService extends BaseService<any> {
     return this.delete(0, this.apiService.sensorApi + this.sensorEndPoints.deleteSensorsEndPoint + idsArray)
       .pipe(map((data: any) => data));
   }
+
+  addSensor(body): Observable<any> {
+    return this.post(body, this.apiService.sensorApi + this.sensorEndPoints.addSensorEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+  addSensorTypeEnd(body): Observable<any> {
+    return this.post(body, this.apiService.sensorApi + this.sensorEndPoints.addSensorTypeEndPoint)
+      .pipe(map((data: any) => data));
+  }
+
+
 
   updateSensor(sensor, data) {
     sensor.SensorId = data.sensorId;

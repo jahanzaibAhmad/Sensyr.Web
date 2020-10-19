@@ -33,11 +33,11 @@
     </div>
 
     <div class="card-body pl-0 pr-0 pt-0 show active" id="nav-step-1" role="tabpanel" aria-labelledby="nav-step-1-tab">
-        <app-sensor-add-one [sensorForm]="sensorForm"></app-sensor-add-one>
+        <app-sensor-add-one [sensorForm]="sensorForm" (saveClick)="save($event)"></app-sensor-add-one>
     </div>
 
     <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-2" role="tabpanel" aria-labelledby="nav-step-2-tab">
-        <app-sensor-add-two></app-sensor-add-two>
+        <app-sensor-add-two [sensorForm]="sensorForm" (saveClick)="save($event)"></app-sensor-add-two>
     </div>
 
     <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-3" role="tabpanel" aria-labelledby="nav-step-3-tab">

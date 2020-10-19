@@ -1,3 +1,136 @@
+     <!-- Add Sensor Starts -->
+    <div id="sensor-step-one">
+        <form [formGroup]="sensorForm" novalidate>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="custom-form add-sensor-form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Asset</label>
+                                    <ng-select class="search-icon"   formControlName="machineId">
+                                        <ng-option *ngFor="let asset of assets" [value]="asset.MachineId">
+                                            {{asset.MachineName}}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>SensyrBridge</label>
+                                    <ng-select class="search-icon"   formControlName="gatewayId" 
+                                    (change)="checkPort($event)">
+                                        <ng-option *ngFor="let gateway of gateways" [value]="gateway.GatewayID">
+                                            {{gateway.GatewayName}}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Port Number</label>
+                                    <select class="form-control" formControlName="portNumber" > 
+                                        <option *ngIf="ports && ports.length > 0" [ngValue]="null">Choose Port</option>
+                                        <option *ngFor="let port of ports" [ngValue]="port.GatewayPortID">
+                                            {{port.PortName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="add-sensor-form-title mt-20">
+                                    Set Threshold (in psi)
+                                    <button type="button" class="small" data-toggle="popover"
+                                        data-content="Lorem ipsum dolor sit amet, ad vel invidunt honestatis, pro minimum dignissim ad, qui brute harum in. At aliquam deseruisse est">What’s
+                                        this?</button>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row value-bar">
+                            <div class="col-md-3 value-tab">
+                                <div class="form-group">
+                                    <label>High Critical</label>
+                                    <input type="number" class="form-control" placeholder="Enter Value" name="" formControlName="criticalMax">
+                                </div>
+                            </div>
+                            <div class="col-md-3 value-tab">
+                                <div class="form-group">
+                                    <label>High Warning</label>
+                                    <input type="number" class="form-control" placeholder="Enter Value" name="" formControlName="warningMax">
+                                </div>
+                            </div>
+                            <div class="col-md-3 value-tab">
+                                <div class="form-group">
+                                    <label>Low Warning</label>
+                                    <input type="number" class="form-control" placeholder="Enter Value" name="" formControlName="warningMin">
+                                </div>
+                            </div>
+                            <div class="col-md-3 value-tab">
+                                <div class="form-group">
+                                    <label>Low Critical</label>
+                                    <input type="number" class="form-control" placeholder="Enter Value" name="" formControlName="criticalMin">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <hr>
+                        <div class="row mb-20">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Data Frequency Limit</label>
+                                    <div class="counter-box">
+                                        <div class="my-counter">
+                                            <span class="minus" (click)="calcFrequency('sub')">-</span>
+                                            <input type="text" class="form-control"  formControlName="frequencyNumber" disabled  />
+                                            <span class="plus" (click)="calcFrequency('add')">+</span>
+                                        </div>
+                                        <div class="min-hrs">
+                                            <select class="form-control" (change)="frequencyTime($event)">
+                                                <option value='min' >min</option>
+                                                <option value='hrs'>hrs</option>
+                                            </select>
+                                        </div>
+                                        <p class="counter-status">** $20 would be charged extra on your bill due to extra
+                                            data usage </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <hr>
+    
+                        <div class="row tier-btns">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Select Criticality</label>
+                                    <button class="btn btn-add-sensor active">Tier 1: Critical Sensor</button>
+                                    <button class="btn btn-add-sensor">Tier 2: Major Sensorr</button>
+                                    <button class="btn btn-add-sensor">Tier 3: Minor Sensor</button>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+            <div class="row form-footer">
+                <div class="col-lg-6 col-4">
+                    <button class="btn btn-back">Go Back</button>
+                </div>
+                <div class="col-lg-6 col-8 text-right">
+                    <button class="btn btn-square-plain">Cancel</button>
+                    <button class="btn btn-square">Save & Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Add Sensor Ends -->
+
 <div class="row form-footer">
     <div class="col-lg-6 col-4">
         <button class="btn btn-back">Go Back</button>

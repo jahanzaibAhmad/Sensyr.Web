@@ -17,6 +17,8 @@ export class SensorEndPoints {
     public readonly getSensorTemplatesComboEndPoint = 'GetSensorTemplatesCombo';
     public readonly getSensorTypesComboEndPoint = 'GetSensorTypesCombo';
     public readonly getSensorTypeUnitsComboEndPoint = 'GetSensorTypeUnitsCombo';
+    public readonly addSensorTypeEndPoint = 'AddSensorType';
+    public readonly addSensorEndPoint = 'AddSensor';
 }
 
 export class DashboardEndPoints {

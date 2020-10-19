@@ -45,13 +45,81 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
   private bindForm() {
     this.sensorForm = this.formBuilder.group({
       sensorTemplate: [null],
-      SensorTemplateId: [null, Validators.compose([
+      sensorTemplateId: [null, Validators.compose([
         Validators.required,
       ])],
-      SensorId: [null],
-      CustomEquation: [null],
-      SensorTypeId: [null],
+      sensorId: [null],
+      sensorName:  [null, Validators.compose([
+        Validators.required,
+        Validators.pattern(this.validationService.regGeneralField)
+      ])],
+      sensorDescription:  [null, Validators.compose([
+        Validators.pattern(this.validationService.regGeneralField)
+      ])],
+      machineId: [null],
+      sensorTypeId: [null],
+      frequencyNumber: [10],
+      criticalMin: [null],
+      criticalMax: [null],
+      warningMin: [null],
+      warningMax: [null],
+      dataTypeId: [null],
+      customEquation: [null],
+      gatewayId: [null],
+      portNumber: [null],
+      sleepStart: [null],
+      sleepEnd: [null],
+      criticalityTypeId: [null],
+      sensorTypeUnitId: [null],
+      comingUnitId: [null],
+      daysOff: [null],
     });
+  }
+
+  save(val) {
+    // this.nextStep(val.step);
+
+
+    const body = this.getValues(this.sensorForm.controls);
+    this.sensorService.addSensor(body).subscribe(
+      data => {
+        if (data.errors) {
+          let errors = '';
+          data.errors.$values.forEach(element => {
+            errors += element.ErrorMessage + ' </br>';
+          });
+          this.toastrService.error(errors, '', { enableHtml: true });
+        } else {
+          this.toastrService.success('Saved successfully!');
+          this.nextStep(val.step);
+        }
+      },
+      error => {
+        this.toastrService.error(error.error);
+      });
+  }
+
+  nextStep(step){
+    if (step === '2') {
+      this.router.navigate(['app', 'sensor', 'add', 1]);
+      setTimeout(() => {
+        document.getElementById('nav-step-2-tab').click();
+      }, 10);
+    } else {
+      this.router.navigate(['app', 'sensor', 'add', 1, 1]);
+      setTimeout(() => {
+        document.getElementById('nav-step-3-tab').click();
+      }, 10);
+    }
+  }
+
+  getValues(controls) {
+    let value;
+    value = {};
+    for (const key in controls) {
+      value[key] = this.sensorForm.controls[key].value;
+    }
+    return value;
   }
 
 }

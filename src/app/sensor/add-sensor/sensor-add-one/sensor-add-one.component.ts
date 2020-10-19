@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SensorService } from '@app/sensor/shared/sensor.service';
@@ -13,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SensorAddOneComponent implements OnInit {
   @Input() sensorForm: FormGroup;
+
+  @Output() saveClick = new EventEmitter<any>();
+
   isTemplate: boolean;
   sensorTemplates: any;
   units: any;
@@ -36,21 +39,16 @@ export class SensorAddOneComponent implements OnInit {
   }
 
 
-  save() {
-    this.router.navigate(['app', 'sensor', 'add', '1']);
-    setTimeout(() => {
-      document.getElementById('nav-step-2-tab').click();
-    }, 10);
-  }
+
 
   checkTemplate(val) {
     this.sensorForm.controls.sensorTemplate.setValue(val);
     this.units = [];
-    this.sensorForm.controls.SensorTemplateId.setValue(null);
+    this.sensorForm.controls.sensorTemplateId.setValue(null);
     if (val) {
-      this.sensorForm.controls.SensorTypeId.disable();
+      this.sensorForm.controls.sensorTypeId.disable();
     } else {
-      this.sensorForm.controls.SensorTypeId.enable();
+      this.sensorForm.controls.sensorTypeId.enable();
     }
     this.emptySensorTemplateValue();
     this.isTemplate = val;
@@ -58,13 +56,14 @@ export class SensorAddOneComponent implements OnInit {
 
   checkDataType(val){
     this.dataType = val;
+    this.sensorForm.controls.dataTypeId.setValue(val);
   }
 
 
   getNewSensorId() {
     this.sensorService.getNewSensorId().subscribe(
       data => {
-        this.sensorForm.controls.SensorId.setValue(data);
+        this.sensorForm.controls.sensorId.setValue(data);
       },
       error => {
       });
@@ -103,7 +102,11 @@ export class SensorAddOneComponent implements OnInit {
   checkSensorTemplate(sensorTemplateId) {
     if (sensorTemplateId) {
       const sensorTemplate = this.sensorTemplates.find(x => x.SensorTemplateId === sensorTemplateId);
-      this.sensorForm.controls.CustomEquation.setValue(sensorTemplate.CustomEquation);
+      this.sensorForm.controls.customEquation.setValue(sensorTemplate.CustomEquation);
+      this.sensorForm.controls.dataTypeId.setValue(+sensorTemplate.DataType);
+      if (sensorTemplate.SensorTypeId) {
+        this.sensorForm.controls.sensorTypeId.setValue(+sensorTemplate.SensorTypeId);
+      }
       if (sensorTemplate.DataType === SensorDataTypeIDEnum.analog) {
         this.dataType = SensorDataTypeNameEnum.analog;
       } else if (sensorTemplate.DataType === SensorDataTypeIDEnum.digital) {
@@ -119,15 +122,27 @@ export class SensorAddOneComponent implements OnInit {
     if (sensorTypeId) {
       this.getSensorTypeUnitsCombo(sensorTypeId);
     } else {
-      this.sensorForm.controls.CustomEquation.setValue(null);
+      this.sensorForm.controls.customEquation.setValue(null);
     }
   }
 
 
   emptySensorTemplateValue() {
     this.units = [];
-    this.sensorForm.controls.CustomEquation.setValue(null);
+    this.sensorForm.controls.customEquation.setValue(null);
     this.dataType =  null;
   }
+
+  save() {
+    const data = { step: '2' };
+    this.saveClick.emit(data);
+  }
+
+  // save() {
+  //   this.router.navigate(['app', 'sensor', 'add', '1']);
+  //   setTimeout(() => {
+  //     document.getElementById('nav-step-2-tab').click();
+  //   }, 10);
+  // }
 
 }

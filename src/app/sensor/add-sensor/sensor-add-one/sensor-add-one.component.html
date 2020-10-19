@@ -25,18 +25,12 @@
                         <div class="col-md-4">
                             <div class="form-group add-sensor-type">
                                 <label>Select Sensor Template</label>
-                                <ng-select class="search-icon"  #agreeSelect labelForId="yesno" formControlName="SensorTemplateId" 
+                                <ng-select class="search-icon"  #agreeSelect labelForId="yesno" formControlName="sensorTemplateId" 
                                 (change)="checkSensorTemplate($event)">
                                     <ng-option *ngFor="let sensorTemplate of sensorTemplates" [value]="sensorTemplate.SensorTemplateId">
                                         {{sensorTemplate.SensorTemplateName}}
                                     </ng-option>
                                 </ng-select>
-                                <!-- <div class="add-sensor-drop input-group sensor-search">
-                                    <input type="search" class="form-control" placeholder="Select a Sensor Template" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><img src="assets/images/gateway/search.svg" class="drop-icon"></span>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -44,7 +38,13 @@
                         <div class="col-md-4">
                             <div class="form-group add-sensor-type">
                                 <label>Select Sensor Type</label>
-                                <ng-select class="search-icon"   labelForId="yesno" formControlName="SensorTypeId" 
+                                <!-- <ng-select #sensorTypeId 
+                                    [items]="sensorTypes"
+                                    bindValue="SensorTypeId"
+                                    bindLabel="SensorTypeName"
+                                    formControlName="SensorTypeId">
+                                 </ng-select> -->
+                                <ng-select class="search-icon"   labelForId="SensorTypeName" formControlName="sensorTypeId" 
                                 (change)="checkSensorType($event)"   >
                                     <ng-option *ngFor="let sensorType of sensorTypes" [value]="sensorType.SensorTypeId">
                                         {{sensorType.SensorTypeName}}
@@ -63,7 +63,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Unit</label>
-                                <select class="form-control">
+                                <select class="form-control" formControlName="sensorTypeUnitId" > 
                                     <option *ngIf="units && units.length > 0" [ngValue]="null">Choose Unit</option>
                                     <option *ngFor="let unit of units" [ngValue]="unit.SensorTypeUnitId">
                                         {{unit.UnitName}}
@@ -74,7 +74,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Comming Unit</label>
-                                <select class="form-control">
+                                <select class="form-control" formControlName="comingUnitId" >
                                     <option *ngIf="units && units.length > 0" [ngValue]="null">Choose Unit</option>
                                     <option *ngFor="let unit of units" [ngValue]="unit.SensorTypeUnitId">
                                         {{unit.UnitName}}
@@ -107,7 +107,7 @@
                                 </label>
                     
                                 <input type="text" class="form-control" placeholder="Enter your equation" name=""
-                                    formControlName="CustomEquation">
+                                    formControlName="customEquation">
                             </div>
                         </div>
                     </div>
@@ -118,13 +118,13 @@
                             <div class="form-group">
                                 <label>Sensor ID</label>
                                     <input type="text" class="form-control" placeholder="Enter sensor id" formControlName="SensorId"
-                                    disabled> 
+                                    disabled formControlName="sensorId"> 
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Sensor Name</label>
-                                <input type="text" class="form-control" placeholder="Enter sensor name" name="">
+                                <input type="text" class="form-control" placeholder="Enter sensor name" name="" formControlName="sensorName">
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label>Sensor Description (Optional)</label>
                                 <textarea placeholder="Enter sensor description" class="form-control"
-                                    rows="5"></textarea>
+                                    rows="5" formControlName="sensorDescription"></textarea>
                             </div>
                         </div>
                     </div>
