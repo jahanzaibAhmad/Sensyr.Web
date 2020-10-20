@@ -9,11 +9,14 @@ import { SensorEndPoints, DashboardEndPoints } from '@app/shared/endpoints/senso
 import { ToastrService } from 'ngx-toastr';
 import { GatewayEndPoints } from '@app/shared/endpoints/gateway';
 import { AssetEndPoints } from '@app/shared/endpoints/asset';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SensorService extends BaseService<any> {
+
+  // sensorForm: FormGroup;
 
   alarmTableSelectEvent = new EventEmitter<any>();
   alarmCountEvent = new EventEmitter<any>();

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SensorService } from '@app/sensor/shared/sensor.service';
@@ -37,7 +37,6 @@ export class SensorAddOneComponent implements OnInit {
     this.getSensorTemplatesCombo();
     this.getSensorTypesCombo();
   }
-
 
 
 
@@ -134,7 +133,7 @@ export class SensorAddOneComponent implements OnInit {
   }
 
   save() {
-    const data = { step: '2' };
+    const data = { step: '1', sensorId: this.sensorForm.controls.sensorId };
     this.saveClick.emit(data);
   }
 

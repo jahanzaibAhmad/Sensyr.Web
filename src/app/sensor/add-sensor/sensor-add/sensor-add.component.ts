@@ -13,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 export class SensorAddComponent implements OnInit, AfterViewInit {
 
   sensorForm: FormGroup;
+  enableStepTwo: boolean;
+  enableStepThree: boolean;
+  sensorId: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,16 +31,50 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.stepTwo = +this.activatedRoute.snapshot.params.stepTwo;
-    this.stepThree = +this.activatedRoute.snapshot.params.stepThree;
+    // this.stepTwo = +this.activatedRoute.snapshot.params.stepTwo;
+    // this.stepThree = +this.activatedRoute.snapshot.params.stepThree;
+    // this.sensorId = this.activatedRoute.snapshot.params.sensorId;
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.step === '3') {
+        this.stepTwo = true;
+        this.stepThree = true;
+      } else if (params.step === '2') {
+        this.stepTwo = true;
+      }
+      this.sensorId = params.sensorId;
+    });
+
+    if (this.sensorId) {
+      this.getSensorById(this.sensorId);
+    }
+
     this.bindForm();
   }
 
+  getSensorById(sensorId) {
+    this.sensorService.getSensorById(sensorId).subscribe(
+      data => {
+        this.setValues(data);
+      },
+      error => {
+      });
+  }
+
+  private setValues(data) {
+    Object.keys(this.sensorForm.controls).forEach(key => {
+      if (data[key] !== undefined) {
+        this.sensorForm.get(key).patchValue(data[key]);
+      }
+    });
+  }
 
   ngAfterViewInit() {
     if (this.stepThree) {
       document.getElementById('nav-step-3-tab').click();
+      this.enableStepThree = true;
     } else if (this.stepTwo) {
+      this.enableStepTwo = true;
       document.getElementById('nav-step-2-tab').click();
     }
   }
@@ -49,11 +86,11 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
         Validators.required,
       ])],
       sensorId: [null],
-      sensorName:  [null, Validators.compose([
+      sensorName: [null, Validators.compose([
         Validators.required,
         Validators.pattern(this.validationService.regGeneralField)
       ])],
-      sensorDescription:  [null, Validators.compose([
+      sensorDescription: [null, Validators.compose([
         Validators.pattern(this.validationService.regGeneralField)
       ])],
       machineId: [null],
@@ -77,8 +114,6 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
   }
 
   save(val) {
-    // this.nextStep(val.step);
-
 
     const body = this.getValues(this.sensorForm.controls);
     this.sensorService.addSensor(body).subscribe(
@@ -90,6 +125,7 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
           });
           this.toastrService.error(errors, '', { enableHtml: true });
         } else {
+          this.sensorId = this.sensorForm.controls.sensorId.value;
           this.toastrService.success('Saved successfully!');
           this.nextStep(val.step);
         }
@@ -99,14 +135,17 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
       });
   }
 
-  nextStep(step){
-    if (step === '2') {
-      this.router.navigate(['app', 'sensor', 'add', 1]);
+  nextStep(step) {
+    if (step === '1') {
+      this.enableStepTwo = true;
+      this.router.navigate(['app', 'sensor', 'add'], { queryParams: { sensorId: this.sensorId, step: '2' } });
+      this.stepTwo = true;
       setTimeout(() => {
         document.getElementById('nav-step-2-tab').click();
       }, 10);
     } else {
-      this.router.navigate(['app', 'sensor', 'add', 1, 1]);
+      this.router.navigate(['app', 'sensor', 'add'], { queryParams: { sensorId: this.sensorId, step: '3' } });
+      this.stepThree = true;
       setTimeout(() => {
         document.getElementById('nav-step-3-tab').click();
       }, 10);

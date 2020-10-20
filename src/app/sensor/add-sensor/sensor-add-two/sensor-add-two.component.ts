@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SensorService } from '@app/sensor/shared/sensor.service';
@@ -8,7 +8,7 @@ import { SensorService } from '@app/sensor/shared/sensor.service';
   templateUrl: './sensor-add-two.component.html',
   styleUrls: ['./sensor-add-two.component.scss']
 })
-export class SensorAddTwoComponent implements OnInit {
+export class SensorAddTwoComponent implements OnInit, OnChanges {
   @Input() sensorForm: FormGroup;
   @Output() saveClick = new EventEmitter<any>();
   assets: any;
@@ -25,6 +25,11 @@ export class SensorAddTwoComponent implements OnInit {
     this.getAssetsCombo();
     this.getGatewayCombo();
     // this.getNotAssignedGatewayPortsCombo(101202);
+  }
+
+  ngOnChanges() {
+    // create header using child_id
+    console.log(this.sensorForm);
   }
 
 

@@ -30,7 +30,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'add/:stepTwo',
+    path: 'add:/sensorId/:stepTwo',
     component: SensorAddComponent,
     data: {
       breadcrumb: 'Sensors Add',
@@ -38,7 +38,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'add/:stepTwo/:stepThree',
+    path: 'add:/sensorId/:stepTwo/:stepThree',
     component: SensorAddComponent,
     data: {
       breadcrumb: 'Sensors Add',

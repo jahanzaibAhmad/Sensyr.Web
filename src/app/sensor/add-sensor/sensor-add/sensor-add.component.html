@@ -37,11 +37,13 @@
     </div>
 
     <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-2" role="tabpanel" aria-labelledby="nav-step-2-tab">
-        <app-sensor-add-two [sensorForm]="sensorForm" (saveClick)="save($event)"></app-sensor-add-two>
+        <div *ngIf="stepTwo">
+        <app-sensor-add-two  [sensorForm]="sensorForm" (saveClick)="save($event)"></app-sensor-add-two>
+    </div>
     </div>
 
     <div class="card-body pl-0 pr-0 pt-0 show" id="nav-step-3" role="tabpanel" aria-labelledby="nav-step-3-tab">
-        <app-sensor-add-three></app-sensor-add-three>
+        <app-sensor-add-three *ngIf="stepThree"></app-sensor-add-three>
     </div>
 
 </section>
