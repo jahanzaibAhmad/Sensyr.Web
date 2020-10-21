@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SensorService } from '@app/sensor/shared/sensor.service';
 
 @Component({
@@ -15,16 +15,27 @@ export class SensorAddTwoComponent implements OnInit, OnChanges {
   gateways: any;
   ports: any;
   freqTime: any;
+  sensorId: any;
 
   constructor(
     private sensorService: SensorService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.sensorId = params.sensorId;
+    });
+
     this.getAssetsCombo();
     this.getGatewayCombo();
     // this.getNotAssignedGatewayPortsCombo(101202);
+    this.setValidators();
+  }
+  setValidators() {
+    this.sensorForm.controls.machineId.setValidators([Validators.required]);
+    this.sensorForm.controls.gatewayId.setValidators([Validators.required]);
   }
 
   ngOnChanges() {
@@ -109,6 +120,11 @@ export class SensorAddTwoComponent implements OnInit, OnChanges {
   save() {
     const data = { step:  '3' };
     this.saveClick.emit(data);
+  }
+
+  back(){
+    document.getElementById('nav-step-1-tab').click();
+    // this.router.navigate(['app', 'sensor', 'add'], {queryParams: { sensorId: this.sensorId } });
   }
 
 

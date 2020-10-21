@@ -13,6 +13,11 @@
                                             {{asset.MachineName}}
                                         </ng-option>
                                     </ng-select>
+                                    <span
+                                    *ngIf="sensorForm.controls.machineId.errors?.required &&  sensorForm.controls.machineId.touched"
+                                    class="invalid-span">
+                                    Please select your asset
+                                </span>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -24,17 +29,28 @@
                                             {{gateway.GatewayName}}
                                         </ng-option>
                                     </ng-select>
+                                    <span
+                                    *ngIf="sensorForm.controls.gatewayId.errors?.required &&  sensorForm.controls.gatewayId.touched"
+                                    class="invalid-span">
+                                    Please select your SensyrBridge
+                                </span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Port Number</label>
                                     <select class="form-control" formControlName="portNumber" > 
+                                        <option *ngIf="!ports || ports.length == 0" [ngValue]="null">No Port exists</option>
                                         <option *ngIf="ports && ports.length > 0" [ngValue]="null">Choose Port</option>
                                         <option *ngFor="let port of ports" [ngValue]="port.GatewayPortID">
                                             {{port.PortName}}
                                         </option>
                                     </select>
+                                    <span
+                                    *ngIf="sensorForm.controls.portNumber.errors?.required &&  sensorForm.controls.portNumber.touched"
+                                    class="invalid-span">
+                                    Please select your port number
+                                </span>
                                 </div>
                             </div>
                         </div>
@@ -133,10 +149,10 @@
 
 <div class="row form-footer">
     <div class="col-lg-6 col-4">
-        <button class="btn btn-back">Go Back</button>
+        <button class="btn btn-back" (click)="back()">Go Back</button>
     </div>
     <div class="col-lg-6 col-8 text-right">
-        <button class="btn btn-square-plain">Cancel</button>
-        <button class="btn btn-square" (click)=" save()">Save & Next</button>
+        <button class="btn btn-square-plain" (click)="back()">Cancel</button>
+        <button class="btn btn-square" (click)=" save()"  [disabled]="sensorForm.invalid">Save & Next</button>
     </div>
 </div>

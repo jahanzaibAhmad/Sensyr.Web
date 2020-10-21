@@ -21,6 +21,7 @@ import { SensorAddComponent } from './add-sensor/sensor-add/sensor-add.component
 import { SensorAddOneComponent } from './add-sensor/sensor-add-one/sensor-add-one.component';
 import { SensorAddTwoComponent } from './add-sensor/sensor-add-two/sensor-add-two.component';
 import { SensorAddThreeComponent } from './add-sensor/sensor-add-three/sensor-add-three.component';
+import { SensorTypeModalComponent } from './add-sensor/sensor-type-modal/sensor-type-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SensorAddThreeComponent } from './add-sensor/sensor-add-three/sensor-ad
     SensorAddComponent,
     SensorAddOneComponent,
     SensorAddTwoComponent,
-    SensorAddThreeComponent
+    SensorAddThreeComponent,
+    SensorTypeModalComponent
   ],
   imports: [
     CommonModule,

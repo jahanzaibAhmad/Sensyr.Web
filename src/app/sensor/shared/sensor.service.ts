@@ -179,7 +179,7 @@ export class SensorService extends BaseService<any> {
       .pipe(map((data: any) => data));
   }
 
-  addSensorTypeEnd(body): Observable<any> {
+  addSensorType(body): Observable<any> {
     return this.post(body, this.apiService.sensorApi + this.sensorEndPoints.addSensorTypeEndPoint)
       .pipe(map((data: any) => data));
   }

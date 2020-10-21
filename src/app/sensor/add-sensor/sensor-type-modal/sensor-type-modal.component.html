@@ -1,0 +1,46 @@
+<!-- Add Sensor Type Modal -->
+
+<div class="modal-header">
+    <h5 class="modal-title">Add Sensor Type</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true"><img src="assets/images/gateway/close.svg"></span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="sensorTypeForm" novalidate>
+        <div class="form-group">
+            <label>Sensor Type</label>
+            <input type="text" placeholder="Enter sensor type name" class="form-control" name="" formControlName="sensorTypeName">
+            <span
+                *ngIf="sensorTypeForm.controls.sensorTypeName.errors?.required &&  sensorTypeForm.controls.sensorTypeName.touched"
+                class="invalid-span">
+                Please enter your sensor type
+            </span>
+            <span
+                *ngIf="sensorTypeForm.controls.sensorTypeName.errors?.pattern &&  sensorTypeForm.controls.sensorTypeName.touched"
+                class="invalid-span">
+                Sensor Type field has invalid text
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Unit</label>
+            <input type="text" class="form-control" placeholder="Enter sensor type unit" name="" formControlName="unitName">
+            <span
+            *ngIf="sensorTypeForm.controls.unitName.errors?.required &&  sensorTypeForm.controls.unitName.touched"
+            class="invalid-span">
+            Please enter your unit 
+        </span>
+        <span
+            *ngIf="sensorTypeForm.controls.unitName.errors?.pattern &&  sensorTypeForm.controls.unitName.touched"
+            class="invalid-span">
+            Unit  field has invalid text
+        </span>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-square-plain" data-dismiss="modal" (click)="close()">Cancel</button>
+    <button type="button" class="btn btn-square" (click)="save()" [disabled]="sensorTypeForm.invalid">Add Sensor Type</button>
+</div>
+
+<!-- Add Sensor Ends -->

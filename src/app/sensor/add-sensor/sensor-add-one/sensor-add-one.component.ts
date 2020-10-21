@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SensorService } from '@app/sensor/shared/sensor.service';
 import { SensorDataTypeIDEnum, SensorDataTypeNameEnum } from '@app/shared/services';
 import { ValidationService } from '@app/shared/validators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { SensorTypeModalComponent } from '../sensor-type-modal/sensor-type-modal.component';
 
 @Component({
   selector: 'app-sensor-add-one',
@@ -21,18 +23,27 @@ export class SensorAddOneComponent implements OnInit {
   units: any;
   sensorTypes: any;
   sensorDataTypeNameEnum: typeof SensorDataTypeNameEnum;
+  sensorDataTypeIDEnum: typeof SensorDataTypeIDEnum;
   dataType =  null;
+  sensorId: any;
 
   constructor(
     private sensorService: SensorService,
     private router: Router,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private ngbModal: NgbModal,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.sensorId = params.sensorId;
+    });
+
     this.sensorDataTypeNameEnum = SensorDataTypeNameEnum;
+    this.sensorDataTypeIDEnum = SensorDataTypeIDEnum;
     this.getNewSensorId();
     this.getSensorTemplatesCombo();
     this.getSensorTypesCombo();
@@ -46,16 +57,21 @@ export class SensorAddOneComponent implements OnInit {
     this.sensorForm.controls.sensorTemplateId.setValue(null);
     if (val) {
       this.sensorForm.controls.sensorTypeId.disable();
+      this.sensorForm.controls.customEquation.disable();
     } else {
       this.sensorForm.controls.sensorTypeId.enable();
+      this.sensorForm.controls.customEquation.enable();
     }
     this.emptySensorTemplateValue();
     this.isTemplate = val;
   }
 
-  checkDataType(val){
-    this.dataType = val;
-    this.sensorForm.controls.dataTypeId.setValue(val);
+  checkDataType(name, id) {
+    this.dataType = name;
+    if (id) {
+      this.sensorForm.controls.dataTypeId.setValue(+id);
+    }
+    this.sensorForm.controls.customEquation.setValue(null);
   }
 
 
@@ -99,6 +115,9 @@ export class SensorAddOneComponent implements OnInit {
   }
 
   checkSensorTemplate(sensorTemplateId) {
+    this.sensorForm.controls.sensorTypeId.setValue(null);
+    this.sensorForm.controls.sensorTypeUnitId.setValue(null);
+    this.sensorForm.controls.comingUnitId.setValue(null);
     if (sensorTemplateId) {
       const sensorTemplate = this.sensorTemplates.find(x => x.SensorTemplateId === sensorTemplateId);
       this.sensorForm.controls.customEquation.setValue(sensorTemplate.CustomEquation);
@@ -118,11 +137,34 @@ export class SensorAddOneComponent implements OnInit {
   }
 
   checkSensorType(sensorTypeId) {
-    if (sensorTypeId) {
+    if (sensorTypeId && isNaN(sensorTypeId)) {
+      this.sensorForm.controls.sensorTypeId.setValue(null);
+      this.addSensorType();
+    }
+    else if (sensorTypeId) {
       this.getSensorTypeUnitsCombo(sensorTypeId);
     } else {
       this.sensorForm.controls.customEquation.setValue(null);
     }
+    this.units = [];
+    this.sensorForm.controls.sensorTypeUnitId.setValue(null);
+    this.sensorForm.controls.comingUnitId.setValue(null);
+  }
+
+  addSensorType(){
+    const modalRef = this.ngbModal.open(SensorTypeModalComponent, {
+      size: 'lg',
+      windowClass: 'gateway-modal',
+      backdrop: true,
+      keyboard: false,
+    });
+    modalRef.result.then((result) => {
+      if (result) {
+        this.getSensorTypesCombo();
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
 
@@ -135,6 +177,15 @@ export class SensorAddOneComponent implements OnInit {
   save() {
     const data = { step: '1', sensorId: this.sensorForm.controls.sensorId };
     this.saveClick.emit(data);
+  }
+
+  isNumberKey(evt) {
+    const charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
   // save() {

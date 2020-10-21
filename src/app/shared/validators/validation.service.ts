@@ -24,6 +24,7 @@ export class ValidationService {
   public regUserName = '^[a-zA-Z0-9._-]*$';
   public regPhoneNumber = '^[ 0-9()+-]*$';
   public regGeneralField = '^[ A-Za-z0-9_$@./#+-]*$';
+public regEquationField = '^(?:(?=[0-9().*/+-]*[xX][0-9().*/+-]*$)(?:[xX0-9().*/+-]){1,100}|[0-9().+-]{1,100})$';
   public regSpace = '^\\S+$';
 
 }

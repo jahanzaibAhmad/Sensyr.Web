@@ -55,16 +55,21 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
   getSensorById(sensorId) {
     this.sensorService.getSensorById(sensorId).subscribe(
       data => {
-        this.setValues(data);
+        this.setValues(data.Data);
       },
       error => {
       });
   }
 
   private setValues(data) {
+    let values;
+    values = {};
+    Object.keys(data).forEach(key => {
+      values[key.toLowerCase()] = data[key];
+    });
     Object.keys(this.sensorForm.controls).forEach(key => {
-      if (data[key] !== undefined) {
-        this.sensorForm.get(key).patchValue(data[key]);
+      if (values[key.toLowerCase()] !== undefined) {
+        this.sensorForm.get(key).patchValue(values[key.toLowerCase()]);
       }
     });
   }
@@ -82,10 +87,10 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
   private bindForm() {
     this.sensorForm = this.formBuilder.group({
       sensorTemplate: [null],
-      sensorTemplateId: [null, Validators.compose([
+      sensorTemplateId: [null],
+      sensorId: [null, Validators.compose([
         Validators.required,
       ])],
-      sensorId: [null],
       sensorName: [null, Validators.compose([
         Validators.required,
         Validators.pattern(this.validationService.regGeneralField)
@@ -94,21 +99,30 @@ export class SensorAddComponent implements OnInit, AfterViewInit {
         Validators.pattern(this.validationService.regGeneralField)
       ])],
       machineId: [null],
-      sensorTypeId: [null],
+      sensorTypeId: [null, Validators.compose([
+        Validators.required,
+      ])],
       frequencyNumber: [10],
       criticalMin: [null],
       criticalMax: [null],
       warningMin: [null],
       warningMax: [null],
       dataTypeId: [null],
-      customEquation: [null],
+      customEquation: [null, Validators.compose([
+        Validators.required,
+        Validators.pattern(this.validationService.regEquationField)
+      ])],
       gatewayId: [null],
       portNumber: [null],
       sleepStart: [null],
       sleepEnd: [null],
       criticalityTypeId: [null],
-      sensorTypeUnitId: [null],
-      comingUnitId: [null],
+      sensorTypeUnitId: [null, Validators.compose([
+        Validators.required,
+      ])],
+      comingUnitId: [null, Validators.compose([
+        Validators.required,
+      ])],
       daysOff: [null],
     });
   }
